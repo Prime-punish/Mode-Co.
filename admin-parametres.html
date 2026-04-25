@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Paramètres – Mode & Co. Admin</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;1,300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <style>
+    :root {
+      --navy:       #0f1c2e;
+      --navy-mid:   #162235;
+      --navy-card:  #1a2a42;
+      --navy-hover: #1e3052;
+      --gold:       #D4AF37;
+      --gold-light: #e8c84a;
+      --gold-dim:   rgba(212,175,55,0.12);
+      --gold-border:rgba(212,175,55,0.20);
+      --cream:      #f5f0e8;
+      --text-dim:   rgba(245,240,232,0.45);
+      --text-mid:   rgba(245,240,232,0.70);
+      --green:      #2ecc8a;
+      --red:        #e05b5b;
+      --blue:       #4d9de0;
+      --purple:     #9b72e8;
+      --orange:     #e88a3a;
+      --sidebar-w:  260px;
+      --hdr-h:      68px;
+    }
+    *{margin:0;padding:0;box-sizing:border-box;}
+    html{font-size:14px;}
+    body{font-family:'DM Sans',sans-serif;background:var(--navy);color:var(--cream);min-height:100vh;display:flex;overflow-x:hidden;}
+    ::-webkit-scrollbar{width:4px;}
+    ::-webkit-scrollbar-thumb{background:var(--gold-border);border-radius:2px;}
+
+    /* ── SIDEBAR ─────────────────────────────── */
+    .sidebar{width:var(--sidebar-w);min-height:100vh;background:linear-gradient(180deg,#0b1624 0%,#0f1c2e 100%);border-right:1px solid var(--gold-border);display:flex;flex-direction:column;position:fixed;top:0;left:0;bottom:0;z-index:100;transition:transform .4s cubic-bezier(.16,1,.3,1);}
+    .sidebar-logo{padding:26px 24px 22px;border-bottom:1px solid var(--gold-border);}
+    .logo-main{font-family:'Playfair Display',serif;font-size:21px;font-weight:900;color:var(--cream);letter-spacing:-.5px;}
+    .logo-main span{color:var(--gold);font-style:italic;}
+    .logo-tag{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);opacity:.65;margin-top:3px;}
+    .sidebar-section{padding:18px 16px 6px;font-size:9.5px;letter-spacing:2.5px;text-transform:uppercase;color:var(--text-dim);}
+    .nav-item{display:flex;align-items:center;gap:13px;padding:11px 18px;margin:2px 10px;border-radius:8px;cursor:pointer;transition:all .25s cubic-bezier(.16,1,.3,1);position:relative;color:var(--text-mid);text-decoration:none;font-size:13px;font-weight:500;}
+    .nav-item:hover{background:var(--gold-dim);color:var(--cream);}
+    .nav-item.active{background:linear-gradient(135deg,rgba(212,175,55,.18),rgba(212,175,55,.06));color:var(--gold);border:1px solid var(--gold-border);}
+    .nav-item.active::before{content:'';position:absolute;left:0;top:30%;bottom:30%;width:3px;background:var(--gold);border-radius:0 2px 2px 0;}
+    .nav-icon{font-size:17px;width:20px;text-align:center;flex-shrink:0;}
+    .nav-badge{margin-left:auto;background:var(--gold);color:var(--navy);font-size:10px;font-weight:700;padding:2px 7px;border-radius:20px;}
+    .sidebar-footer{margin-top:auto;padding:18px;border-top:1px solid var(--gold-border);}
+    .user-card{display:flex;align-items:center;gap:11px;}
+    .user-avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--gold),#b8962e);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;color:var(--navy);flex-shrink:0;}
+    .user-name{font-weight:600;font-size:13px;}
+    .user-role{font-size:11px;color:var(--text-dim);}
+    .logout-btn{margin-left:auto;background:none;border:none;color:var(--text-dim);cursor:pointer;font-size:15px;padding:4px;transition:color .2s;}
+    .logout-btn:hover{color:var(--red);}
+
+    /* ── MAIN ────────────────────────────────── */
+    .main-content{margin-left:var(--sidebar-w);flex:1;display:flex;flex-direction:column;min-height:100vh;}
+    .topbar{height:var(--hdr-h);background:rgba(15,28,46,.85);backdrop-filter:blur(14px);border-bottom:1px solid var(--gold-border);display:flex;align-items:center;padding:0 28px;gap:20px;position:sticky;top:0;z-index:50;}
+    .page-title{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;}
+    .topbar-right{margin-left:auto;display:flex;align-items:center;gap:14px;}
+    .topbar-btn{width:38px;height:38px;border-radius:50%;background:var(--gold-dim);border:1px solid var(--gold-border);display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--text-mid);font-size:15px;transition:all .2s;position:relative;}
+    .topbar-btn:hover{background:var(--gold);color:var(--navy);}
+    .topbar-notif{position:absolute;top:4px;right:4px;width:8px;height:8px;background:var(--red);border-radius:50%;border:1.5px solid var(--navy);}
+    .topbar-date{font-size:12px;color:var(--text-dim);}
+
+    /* ── CONTENT WRAPPER ─────────────────────── */
+    .content{padding:28px;flex:1;}
+
+    /* ── KPI CARDS ───────────────────────────── */
+    .kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px;}
+    .kpi-card{background:var(--navy-card);border:1px solid var(--gold-border);border-radius:14px;padding:22px;position:relative;overflow:hidden;transition:transform .25s,box-shadow .25s;}
+    .kpi-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,.3);}
+    .kpi-card::before{content:'';position:absolute;top:-30px;right:-30px;width:100px;height:100px;border-radius:50%;opacity:.06;}
+    .kpi-card.green::before{background:var(--green);}
+    .kpi-card.gold::before{background:var(--gold);}
+    .kpi-card.blue::before{background:var(--blue);}
+    .kpi-card.red-c::before{background:var(--red);}
+    .kpi-label{font-size:10.5px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);margin-bottom:12px;display:flex;align-items:center;justify-content:space-between;}
+    .kpi-icon{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px;}
+    .kpi-icon.green{background:rgba(46,204,138,.15);color:var(--green);}
+    .kpi-icon.gold{background:var(--gold-dim);color:var(--gold);}
+    .kpi-icon.blue{background:rgba(77,157,224,.15);color:var(--blue);}
+    .kpi-icon.red-c{background:rgba(224,91,91,.15);color:var(--red);}
+    .kpi-value{font-family:'Playfair Display',serif;font-size:28px;font-weight:900;color:var(--cream);line-height:1;margin-bottom:8px;}
+    .kpi-change{font-size:11.5px;display:flex;align-items:center;gap:5px;}
+    .kpi-change.up{color:var(--green);}
+    .kpi-change.down{color:var(--red);}
+    .kpi-sub{font-size:11px;color:var(--text-dim);margin-top:2px;}
+    .kpi-sparkline{margin-top:14px;}
+
+    /* ── CHARTS ──────────────────────────────── */
+    .charts-row{display:grid;grid-template-columns:2fr 1fr;gap:16px;margin-bottom:24px;}
+    .chart-card{background:var(--navy-card);border:1px solid var(--gold-border);border-radius:14px;padding:24px;}
+    .chart-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:20px;flex-wrap:wrap;gap:10px;}
+    .chart-title{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;}
+    .chart-subtitle{font-size:11px;color:var(--text-dim);margin-top:3px;}
+    .chart-period-btn{font-size:10.5px;padding:5px 12px;border-radius:20px;border:1px solid var(--gold-border);background:transparent;color:var(--text-mid);cursor:pointer;transition:all .2s;}
+    .chart-period-btn.active{background:var(--gold);color:var(--navy);font-weight:700;border-color:var(--gold);}
+
+    /* ── SECOND ROW ──────────────────────────── */
+    .second-row{display:grid;grid-template-columns:1.4fr 1fr;gap:16px;margin-bottom:24px;}
+
+    /* ── TABLES ──────────────────────────────── */
+    .table-card{background:var(--navy-card);border:1px solid var(--gold-border);border-radius:14px;overflow:hidden;}
+    .table-header{padding:18px 22px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--gold-border);}
+    .table-header-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;}
+    .table-link{font-size:11px;color:var(--gold);cursor:pointer;transition:opacity .2s;}
+    .table-link:hover{opacity:.7;}
+    table{width:100%;border-collapse:collapse;}
+    th{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);padding:10px 22px;text-align:left;border-bottom:1px solid var(--gold-border);font-weight:600;}
+    td{padding:13px 22px;font-size:12.5px;border-bottom:1px solid rgba(255,255,255,.04);vertical-align:middle;}
+    tr:last-child td{border-bottom:none;}
+    tr:hover td{background:var(--gold-dim);}
+    .status-pill{display:inline-flex;align-items:center;gap:5px;padding:3px 10px;border-radius:20px;font-size:10.5px;font-weight:600;}
+    .status-pill.livré{background:rgba(46,204,138,.15);color:var(--green);}
+    .status-pill.traitement{background:rgba(77,157,224,.15);color:var(--blue);}
+    .status-pill.annulé{background:rgba(224,91,91,.15);color:var(--red);}
+    .status-pill.expédié{background:rgba(212,175,55,.15);color:var(--gold);}
+    .status-dot{width:6px;height:6px;border-radius:50%;background:currentColor;}
+
+    /* ── TOP PRODUCTS ────────────────────────── */
+    .top-product{display:flex;align-items:center;gap:12px;padding:12px 22px;border-bottom:1px solid rgba(255,255,255,.04);transition:background .2s;}
+    .top-product:last-child{border-bottom:none;}
+    .top-product:hover{background:var(--gold-dim);}
+    .top-product-img{width:44px;height:44px;border-radius:8px;object-fit:cover;background:var(--navy-hover);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:1.2rem;}
+    .top-product-name{font-size:12.5px;font-weight:600;color:var(--cream);}
+    .top-product-cat{font-size:10.5px;color:var(--text-dim);}
+    .top-product-revenue{margin-left:auto;text-align:right;}
+    .top-product-revenue .amount{font-family:'Playfair Display',serif;font-size:13px;font-weight:700;color:var(--gold);}
+    .top-product-revenue .units{font-size:10px;color:var(--text-dim);}
+    .top-product-bar{width:60px;height:4px;background:rgba(255,255,255,.06);border-radius:2px;margin-top:4px;margin-left:auto;}
+    .top-product-bar-fill{height:100%;border-radius:2px;background:linear-gradient(90deg,var(--gold),var(--gold-light));}
+
+    /* ── MINI METRICS ────────────────────────── */
+    .mini-metric-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:16px 22px;}
+    .mini-metric{padding:14px;background:var(--navy);border:1px solid var(--gold-border);border-radius:10px;}
+    .mini-metric-label{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-dim);margin-bottom:6px;}
+    .mini-metric-value{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;}
+    .mini-metric-change{font-size:10.5px;margin-top:3px;}
+
+    /* ── ACTIVITY ────────────────────────────── */
+    .activity-item{display:flex;align-items:flex-start;gap:12px;padding:13px 22px;border-bottom:1px solid rgba(255,255,255,.04);}
+    .activity-item:last-child{border-bottom:none;}
+    .activity-icon{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;margin-top:2px;}
+    .activity-text{font-size:12.5px;line-height:1.5;}
+    .activity-text strong{color:var(--cream);}
+    .activity-time{font-size:10.5px;color:var(--text-dim);white-space:nowrap;}
+
+    /* ── GEOLOCATION BAR ─────────────────────── */
+    .geo-bar{padding:6px 0;}
+    .geo-item{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.04);}
+    .geo-item:last-child{border-bottom:none;}
+    .geo-flag{font-size:1.2rem;width:24px;text-align:center;}
+    .geo-country{font-size:12.5px;font-weight:500;flex:1;}
+    .geo-amount{font-size:12px;color:var(--gold);font-weight:600;white-space:nowrap;}
+    .geo-pct-bar{flex:1;height:4px;background:rgba(255,255,255,.06);border-radius:2px;overflow:hidden;max-width:80px;}
+    .geo-pct-fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold-light));border-radius:2px;}
+
+    /* ANIMATIONS */
+    @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes countUp{from{opacity:0}to{opacity:1}}
+    .kpi-card{animation:fadeUp .5s cubic-bezier(.16,1,.3,1) both;}
+    .kpi-card:nth-child(1){animation-delay:.05s}
+    .kpi-card:nth-child(2){animation-delay:.1s}
+    .kpi-card:nth-child(3){animation-delay:.15s}
+    .kpi-card:nth-child(4){animation-delay:.2s}
+    .chart-card{animation:fadeUp .5s cubic-bezier(.16,1,.3,1) .25s both;}
+    .table-card{animation:fadeUp .5s cubic-bezier(.16,1,.3,1) .3s both;}
+
+    @media(max-width:1200px){.kpi-grid{grid-template-columns:repeat(2,1fr)}.charts-row{grid-template-columns:1fr}.second-row{grid-template-columns:1fr}}
+    @media(max-width:768px){.sidebar{transform:translateX(-100%)}.main-content{margin-left:0}.kpi-grid{grid-template-columns:1fr 1fr}}
+  </style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sidebar-logo">
+    <div class="logo-main">MODE <span>& Co.</span></div>
+    <div class="logo-tag">Admin Dashboard</div>
+  </div>
+
+  <div class="sidebar-section">Vue d'ensemble</div>
+  <a href="dashboard.html" class="nav-item">
+    <span class="nav-icon"><i class="bi bi-grid-1x2-fill"></i></span>
+    <span>Tableau de bord</span>
+  </a>
+  <a href="admin-analytiques.html" class="nav-item">
+    <span class="nav-icon"><i class="bi bi-graph-up-arrow"></i></span>
+    <span>Analytiques</span>
+  </a>
+
+  <div class="sidebar-section">Boutique</div>
+  <a href="products.html" class="nav-item">
+    <span class="nav-icon"><i class="bi bi-bag-heart"></i></span>
+    <span>Produits</span>
+    <span class="nav-badge">850</span>
+  </a>
+  <a href="admin-commandes.html" class="nav-item">
+    <span class="nav-icon"><i class="bi bi-receipt-cutoff"></i></span>
+    <span>Commandes</span>
+    <span class="nav-badge">38</span>
+  </a>
+  <a href="admin-clients.html" class="nav-item">
+    <span class="nav-icon"><i class="bi bi-people"></i></span>
+    <span>Clients</span>
+  </a>
+  <a href="admin-stock.html" class="nav-item">
+    <span class="nav-icon"><i class="bi bi-box-seam"></i></span>
+    <span>Stock</span>
+  </a>
+
+  <div class="sidebar-section">Contenu</div>
+  <a href="admin-promotions.html" class="nav-item">
+    <span class="nav-icon"><i class="bi bi-megaphone"></i></span>
+    <span>Promotions</span>
+  </a>
+  <a href="admin-avis.html" class="nav-item">
+    <span class="nav-icon"><i class="bi bi-chat-left-text"></i></span>
+    <span>Avis clients</span>
+    <span class="nav-badge">12</span>
+  </a>
+
+  <div class="sidebar-section">Système</div>
+  <a href="admin-parametres.html" class="nav-item active">
+    <span class="nav-icon"><i class="bi bi-gear"></i></span>
+    <span>Paramètres</span>
+  </a>
+
+  <div class="sidebar-footer">
+    <div class="user-card">
+      <div class="user-avatar">AD</div>
+      <div>
+        <div class="user-name">Admin Mode&Co.</div>
+        <div class="user-role">Super Administrateur</div>
+      </div>
+      <button class="logout-btn" title="Déconnexion"><i class="bi bi-box-arrow-right"></i></button>
+    </div>
+  </div>
+</aside>
+
+<!-- MAIN -->
+<div class="main-content">
+  <header class="topbar">
+    <div class="page-title">Paramètres</div>
+    <div class="topbar-date" id="topbar-date"></div>
+    <div class="topbar-right">
+      <a href="index.html" class="topbar-btn"><i class="bi bi-box-arrow-up-right"></i></a>
+    </div>
+  </header>
+  <div class="content">
+    <div style="display:grid;grid-template-columns:240px 1fr;gap:20px;">
+      <!-- Param Nav -->
+      <div style="background:var(--navy-card);border:1px solid var(--gold-border);border-radius:14px;padding:16px;height:fit-content;">
+        <div style="font-size:9.5px;letter-spacing:2.5px;text-transform:uppercase;color:var(--text-dim);padding:8px 8px 12px;">Configuration</div>
+        <a class="nav-item active" style="margin:2px 0;" href="#">Général</a>
+        <a class="nav-item" style="margin:2px 0;" href="#">Paiements</a>
+        <a class="nav-item" style="margin:2px 0;" href="#">Livraison</a>
+        <a class="nav-item" style="margin:2px 0;" href="#">Emails</a>
+        <div style="font-size:9.5px;letter-spacing:2.5px;text-transform:uppercase;color:var(--text-dim);padding:16px 8px 8px;">Compte</div>
+        <a class="nav-item" style="margin:2px 0;" href="#">Administrateurs</a>
+        <a class="nav-item" style="margin:2px 0;" href="#">Sécurité</a>
+        <a class="nav-item" style="margin:2px 0;" href="#">API</a>
+      </div>
+
+      <!-- Param Content -->
+      <div>
+        <div style="background:var(--navy-card);border:1px solid var(--gold-border);border-radius:14px;padding:28px;margin-bottom:20px;">
+          <div style="font-family:'Playfair Display',serif;font-size:17px;font-weight:700;margin-bottom:4px;">Informations générales</div>
+          <div style="font-size:11px;color:var(--text-dim);margin-bottom:24px;">Paramètres de base de votre boutique</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+            <div><label style="font-size:9.5px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);display:block;margin-bottom:6px;">Nom de la boutique</label><input value="Mode & Co." style="width:100%;background:var(--navy);color:var(--cream);border:1px solid var(--gold-border);border-radius:6px;padding:10px 14px;font-size:13px;"></div>
+            <div><label style="font-size:9.5px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);display:block;margin-bottom:6px;">Email contact</label><input value="contact@modeco.fr" style="width:100%;background:var(--navy);color:var(--cream);border:1px solid var(--gold-border);border-radius:6px;padding:10px 14px;font-size:13px;"></div>
+            <div><label style="font-size:9.5px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);display:block;margin-bottom:6px;">Téléphone</label><input value="+33 1 23 45 67 89" style="width:100%;background:var(--navy);color:var(--cream);border:1px solid var(--gold-border);border-radius:6px;padding:10px 14px;font-size:13px;"></div>
+            <div><label style="font-size:9.5px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);display:block;margin-bottom:6px;">Devise</label><select style="width:100%;background:var(--navy);color:var(--cream);border:1px solid var(--gold-border);border-radius:6px;padding:10px 14px;font-size:13px;"><option>EUR – Euro (€)</option><option>USD – Dollar ($)</option></select></div>
+            <div style="grid-column:span 2;"><label style="font-size:9.5px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);display:block;margin-bottom:6px;">Adresse</label><input value="12 Rue des Francs Bourgeois, 75003 Paris, France" style="width:100%;background:var(--navy);color:var(--cream);border:1px solid var(--gold-border);border-radius:6px;padding:10px 14px;font-size:13px;"></div>
+          </div>
+          <button style="margin-top:20px;background:linear-gradient(135deg,var(--gold),#b8962e);color:var(--navy);border:none;border-radius:8px;padding:10px 24px;font-size:12px;font-weight:700;cursor:pointer;">Enregistrer les modifications</button>
+        </div>
+
+        <div style="background:var(--navy-card);border:1px solid var(--gold-border);border-radius:14px;padding:28px;">
+          <div style="font-family:'Playfair Display',serif;font-size:17px;font-weight:700;margin-bottom:4px;">Options boutique</div>
+          <div style="font-size:11px;color:var(--text-dim);margin-bottom:24px;">Comportements et règles</div>
+          <div style="display:flex;flex-direction:column;gap:16px;">
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:14px;background:var(--navy);border:1px solid var(--gold-border);border-radius:8px;">
+              <div><div style="font-size:13px;font-weight:600;">Mode maintenance</div><div style="font-size:11px;color:var(--text-dim);margin-top:2px;">Affiche une page de maintenance aux visiteurs</div></div>
+              <div style="width:44px;height:24px;border-radius:12px;background:#333;cursor:pointer;position:relative;flex-shrink:0;"><div style="position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:#fff;"></div></div>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:14px;background:var(--navy);border:1px solid var(--gold-border);border-radius:8px;">
+              <div><div style="font-size:13px;font-weight:600;">Avis clients visibles</div><div style="font-size:11px;color:var(--text-dim);margin-top:2px;">Affiche les avis sur les fiches produits</div></div>
+              <div style="width:44px;height:24px;border-radius:12px;background:var(--gold);cursor:pointer;position:relative;flex-shrink:0;"><div style="position:absolute;top:3px;left:23px;width:18px;height:18px;border-radius:50%;background:#fff;"></div></div>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:14px;background:var(--navy);border:1px solid var(--gold-border);border-radius:8px;">
+              <div><div style="font-size:13px;font-weight:600;">Newsletter activée</div><div style="font-size:11px;color:var(--text-dim);margin-top:2px;">Pop-up d'inscription à la newsletter</div></div>
+              <div style="width:44px;height:24px;border-radius:12px;background:var(--gold);cursor:pointer;position:relative;flex-shrink:0;"><div style="position:absolute;top:3px;left:23px;width:18px;height:18px;border-radius:50%;background:#fff;"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>document.getElementById('topbar-date').textContent=new Date().toLocaleDateString('fr-FR',{weekday:'long',day:'numeric',month:'long',year:'numeric'});</script>
+</body></html>

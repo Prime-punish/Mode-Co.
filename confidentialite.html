@@ -12,20 +12,17 @@
     .page-hero{background:#000;padding:80px 0 50px;position:relative;}
     .page-hero::before{content:'';position:absolute;inset:0;background:rgba(0,0,0,0.85);}
     .page-hero .container{position:relative;z-index:2;}
-    .legal-nav{position:sticky;top:90px;background:#fff;border:1px solid var(--border-light);border-radius:var(--radius-lg);padding:24px;}
-    .legal-nav-item{display:block;padding:8px 12px;border-radius:var(--radius-sm);color:var(--text-secondary);font-size:0.82rem;text-decoration:none;transition:all 0.2s;margin-bottom:4px;}
-    .legal-nav-item:hover{background:var(--accent-ghost);color:var(--accent-color);}
-    .legal-section{margin-bottom:48px;}
+    .legal-section{margin-bottom:44px;}
     .legal-section h2{font-family:var(--font-heading);font-size:1.4rem;font-weight:700;margin-bottom:16px;padding-bottom:12px;border-bottom:2px solid var(--accent-color);}
-    .legal-section h3{font-size:1rem;font-weight:700;margin:20px 0 10px;color:var(--text-primary);}
     .legal-section p,.legal-section li{color:var(--text-secondary);line-height:1.9;font-size:0.9rem;}
     .legal-section ul{padding-left:20px;}
     .legal-section li{margin-bottom:6px;}
     .last-updated{background:var(--bg-light);border-left:4px solid var(--accent-color);padding:12px 20px;border-radius:0 var(--radius-sm) var(--radius-sm) 0;font-size:0.8rem;color:var(--text-secondary);margin-bottom:40px;}
-    .rights-card{background:#fff;border:1px solid var(--border-light);border-radius:var(--radius-lg);padding:20px 24px;margin-bottom:12px;display:flex;align-items:flex-start;gap:16px;}
-    .rights-card-icon{width:40px;height:40px;background:var(--accent-ghost);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--accent-color);font-size:1rem;flex-shrink:0;}
-    .rights-card-title{font-weight:700;font-size:0.9rem;margin-bottom:4px;}
-    .rights-card-text{font-size:0.82rem;color:var(--text-secondary);line-height:1.6;}
+    .rights-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-top:16px;}
+    .right-card{background:var(--bg-light);border:1px solid var(--border-light);border-radius:var(--radius-md);padding:20px;text-align:center;}
+    .right-icon{font-size:1.5rem;color:var(--accent-color);margin-bottom:10px;}
+    .right-title{font-weight:700;font-size:0.85rem;}
+    .right-desc{font-size:0.78rem;color:var(--text-secondary);margin-top:6px;line-height:1.6;}
   </style>
 </head>
 <body>
@@ -43,7 +40,7 @@
         <li class="nav-item"><a class="nav-link" href="products.html">Vêtements</a></li>
         <li class="nav-item"><a class="nav-link" href="products.html?cat=chaussures">Chaussures</a></li>
         <li class="nav-item"><a class="nav-link" href="products.html?cat=accessoires">Accessoires</a></li>
-        <li class="nav-item"><a class="nav-link" href="apropos.html">À propos</a></li>
+        <li class="nav-item"><a class="nav-link" href="a-propos.html">À propos</a></li>
       </ul>
     </div>
     <div class="d-flex align-items-center gap-2">
@@ -59,213 +56,125 @@
 
 <div class="page-hero">
   <div class="container">
-    <span style="font-size:0.65rem;font-weight:600;letter-spacing:4px;text-transform:uppercase;color:var(--accent-color);display:block;margin-bottom:12px;">Informations légales</span>
+    <span style="font-size:0.65rem;font-weight:600;letter-spacing:4px;text-transform:uppercase;color:var(--accent-color);display:block;margin-bottom:12px;">RGPD & Vie privée</span>
     <h1 style="font-family:var(--font-heading);font-size:clamp(2rem,4vw,3.5rem);font-weight:900;color:#fff;">Politique de <span style="color:var(--accent-color);font-style:italic;">Confidentialité</span></h1>
   </div>
 </div>
 
 <section class="section-padding" style="background:var(--bg-light);">
-  <div class="container">
-    <div class="row g-5">
-      <!-- Sidebar Nav -->
-      <div class="col-lg-3 d-none d-lg-block">
-        <div class="legal-nav">
-          <div style="font-size:0.65rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);margin-bottom:12px;">Sommaire</div>
-          <a class="legal-nav-item" href="#art1">1. Responsable du traitement</a>
-          <a class="legal-nav-item" href="#art2">2. Données collectées</a>
-          <a class="legal-nav-item" href="#art3">3. Finalités du traitement</a>
-          <a class="legal-nav-item" href="#art4">4. Base légale</a>
-          <a class="legal-nav-item" href="#art5">5. Destinataires</a>
-          <a class="legal-nav-item" href="#art6">6. Conservation</a>
-          <a class="legal-nav-item" href="#art7">7. Vos droits</a>
-          <a class="legal-nav-item" href="#art8">8. Sécurité</a>
-          <a class="legal-nav-item" href="#art9">9. Mineurs</a>
-          <a class="legal-nav-item" href="#art10">10. Modifications</a>
-          <div style="margin-top:20px;padding-top:16px;border-top:1px solid var(--border-light);">
-            <a href="cookies.html" class="legal-nav-item" style="color:var(--accent-color);font-weight:600;">
-              <i class="bi bi-cookie me-2"></i>Politique cookies →
-            </a>
-          </div>
+  <div class="container" style="max-width:860px;">
+    <div class="last-updated"><i class="bi bi-calendar3 me-2"></i>Dernière mise à jour : 1er janvier 2026</div>
+
+    <div class="legal-section">
+      <h2>1. Responsable du traitement</h2>
+      <p>Le responsable du traitement des données personnelles est <strong>Mode & Co. SAS</strong>, 12 Rue des Francs Bourgeois, 75003 Paris. Pour toute question relative à vos données personnelles, contactez notre DPO à : <a href="mailto:dpo@modeco.fr" style="color:var(--accent-color);">dpo@modeco.fr</a>.</p>
+    </div>
+
+    <div class="legal-section">
+      <h2>2. Données collectées</h2>
+      <p>Nous collectons les données suivantes lors de votre utilisation de nos services :</p>
+      <ul>
+        <li><strong>Données d'identification :</strong> nom, prénom, adresse email, numéro de téléphone</li>
+        <li><strong>Données de livraison :</strong> adresse postale, instructions spéciales</li>
+        <li><strong>Données de paiement :</strong> type de carte (les numéros complets ne sont jamais conservés)</li>
+        <li><strong>Données de navigation :</strong> adresse IP, cookies, pages visitées, durée des sessions</li>
+        <li><strong>Données de commande :</strong> historique d'achat, préférences, avis laissés</li>
+      </ul>
+    </div>
+
+    <div class="legal-section">
+      <h2>3. Finalités du traitement</h2>
+      <p>Vos données sont traitées aux fins suivantes :</p>
+      <ul>
+        <li>Traitement et suivi de vos commandes</li>
+        <li>Gestion de votre compte client</li>
+        <li>Communication relative à vos achats (confirmation, expédition, retours)</li>
+        <li>Envoi de newsletters et offres promotionnelles (avec votre consentement)</li>
+        <li>Amélioration de nos services et personnalisation de votre expérience</li>
+        <li>Respect de nos obligations légales et fiscales</li>
+        <li>Prévention de la fraude</li>
+      </ul>
+    </div>
+
+    <div class="legal-section">
+      <h2>4. Base légale du traitement</h2>
+      <p>Selon les traitements, la base légale est :</p>
+      <ul>
+        <li><strong>Exécution du contrat</strong> : traitement des commandes, gestion du compte</li>
+        <li><strong>Consentement</strong> : newsletters, cookies marketing</li>
+        <li><strong>Intérêt légitime</strong> : prévention de la fraude, amélioration des services</li>
+        <li><strong>Obligation légale</strong> : facturation, comptabilité</li>
+      </ul>
+    </div>
+
+    <div class="legal-section">
+      <h2>5. Durée de conservation</h2>
+      <ul>
+        <li>Données de compte client : 3 ans après la dernière commande</li>
+        <li>Données de commande : 10 ans (obligation comptable)</li>
+        <li>Cookies et données de navigation : 13 mois maximum</li>
+        <li>Données de newsletter : jusqu'à désinscription</li>
+      </ul>
+    </div>
+
+    <div class="legal-section">
+      <h2>6. Partage des données</h2>
+      <p>Vos données peuvent être transmises à nos prestataires dans le cadre strict de l'exécution de nos services :</p>
+      <ul>
+        <li>Transporteurs (Colissimo, Chronopost, Mondial Relay) pour la livraison</li>
+        <li>Prestataires de paiement sécurisé (Stripe, PayPal)</li>
+        <li>Prestataires d'hébergement et de maintenance technique</li>
+        <li>Solutions d'emailing (pour les newsletters)</li>
+      </ul>
+      <p>Nous ne vendons jamais vos données personnelles à des tiers.</p>
+    </div>
+
+    <div class="legal-section">
+      <h2>7. Vos droits</h2>
+      <p>Conformément au RGPD, vous disposez des droits suivants :</p>
+      <div class="rights-grid">
+        <div class="right-card">
+          <div class="right-icon"><i class="bi bi-eye"></i></div>
+          <div class="right-title">Accès</div>
+          <div class="right-desc">Consulter vos données personnelles</div>
+        </div>
+        <div class="right-card">
+          <div class="right-icon"><i class="bi bi-pencil"></i></div>
+          <div class="right-title">Rectification</div>
+          <div class="right-desc">Corriger des données inexactes</div>
+        </div>
+        <div class="right-card">
+          <div class="right-icon"><i class="bi bi-trash"></i></div>
+          <div class="right-title">Effacement</div>
+          <div class="right-desc">Supprimer vos données</div>
+        </div>
+        <div class="right-card">
+          <div class="right-icon"><i class="bi bi-download"></i></div>
+          <div class="right-title">Portabilité</div>
+          <div class="right-desc">Exporter vos données</div>
+        </div>
+        <div class="right-card">
+          <div class="right-icon"><i class="bi bi-slash-circle"></i></div>
+          <div class="right-title">Opposition</div>
+          <div class="right-desc">S'opposer à un traitement</div>
+        </div>
+        <div class="right-card">
+          <div class="right-icon"><i class="bi bi-pause-circle"></i></div>
+          <div class="right-title">Limitation</div>
+          <div class="right-desc">Limiter certains traitements</div>
         </div>
       </div>
+      <p style="margin-top:20px;">Pour exercer vos droits, contactez : <a href="mailto:dpo@modeco.fr" style="color:var(--accent-color);">dpo@modeco.fr</a>. Vous pouvez également introduire une réclamation auprès de la CNIL (<a href="https://www.cnil.fr" target="_blank" style="color:var(--accent-color);">www.cnil.fr</a>).</p>
+    </div>
 
-      <!-- Content -->
-      <div class="col-lg-9">
-        <div class="last-updated"><i class="bi bi-calendar3 me-2"></i>Dernière mise à jour : 1er janvier 2026 — Conforme au RGPD (UE) 2016/679</div>
+    <div class="legal-section">
+      <h2>8. Sécurité des données</h2>
+      <p>Mode & Co. met en œuvre toutes les mesures techniques et organisationnelles appropriées pour protéger vos données : chiffrement SSL/TLS, accès restreint aux données, mises à jour de sécurité régulières, et formation de nos équipes à la protection des données.</p>
+    </div>
 
-        <div class="legal-section" id="art1">
-          <h2>Article 1 – Responsable du traitement</h2>
-          <p>Le responsable du traitement de vos données personnelles est :</p>
-          <p><strong>Mode & Co. SAS</strong><br>
-          Capital social : 50 000 €<br>
-          Siège social : 12 Rue des Francs Bourgeois, 75003 Paris<br>
-          SIRET : 123 456 789 00010<br>
-          Email DPO : <a href="mailto:dpo@modeco.fr" style="color:var(--accent-color);">dpo@modeco.fr</a><br>
-          Téléphone : +33 1 23 45 67 89</p>
-        </div>
-
-        <div class="legal-section" id="art2">
-          <h2>Article 2 – Données collectées</h2>
-          <p>Nous collectons les catégories de données suivantes selon vos interactions avec notre site :</p>
-          <h3>Données d'identification</h3>
-          <ul>
-            <li>Nom, prénom, adresse email</li>
-            <li>Adresse postale de livraison et de facturation</li>
-            <li>Numéro de téléphone</li>
-          </ul>
-          <h3>Données de commande</h3>
-          <ul>
-            <li>Historique des achats et des retours</li>
-            <li>Références produits et tailles commandés</li>
-            <li>Mode de paiement (type de carte uniquement, jamais les numéros complets)</li>
-          </ul>
-          <h3>Données de navigation</h3>
-          <ul>
-            <li>Adresse IP et données de connexion</li>
-            <li>Pages visitées, durée de visite, source de trafic</li>
-            <li>Données issues des cookies (voir <a href="cookies.html" style="color:var(--accent-color);">Politique Cookies</a>)</li>
-          </ul>
-          <h3>Données de préférence</h3>
-          <ul>
-            <li>Liste de favoris (wishlist)</li>
-            <li>Préférences de communication</li>
-            <li>Abonnement à la newsletter</li>
-          </ul>
-        </div>
-
-        <div class="legal-section" id="art3">
-          <h2>Article 3 – Finalités du traitement</h2>
-          <p>Vos données sont traitées pour les finalités suivantes :</p>
-          <ul>
-            <li><strong>Gestion des commandes :</strong> traitement, expédition, facturation et service après-vente</li>
-            <li><strong>Gestion du compte client :</strong> création et administration de votre espace personnel</li>
-            <li><strong>Communication commerciale :</strong> envoi de newsletters, promotions et offres personnalisées (sur consentement)</li>
-            <li><strong>Amélioration du service :</strong> analyse des comportements de navigation pour optimiser l'expérience utilisateur</li>
-            <li><strong>Obligations légales :</strong> conservation des données comptables et fiscales</li>
-            <li><strong>Prévention de la fraude :</strong> détection et prévention des transactions frauduleuses</li>
-          </ul>
-        </div>
-
-        <div class="legal-section" id="art4">
-          <h2>Article 4 – Base légale du traitement</h2>
-          <p>Conformément au RGPD, nos traitements reposent sur les bases légales suivantes :</p>
-          <ul>
-            <li><strong>Exécution du contrat</strong> (art. 6.1.b) : traitement des commandes, gestion du compte</li>
-            <li><strong>Consentement</strong> (art. 6.1.a) : newsletter, cookies non essentiels, personnalisation</li>
-            <li><strong>Obligation légale</strong> (art. 6.1.c) : conservation des factures (10 ans)</li>
-            <li><strong>Intérêt légitime</strong> (art. 6.1.f) : sécurité du site, prévention de la fraude, amélioration des services</li>
-          </ul>
-        </div>
-
-        <div class="legal-section" id="art5">
-          <h2>Article 5 – Destinataires des données</h2>
-          <p>Vos données peuvent être communiquées aux catégories de destinataires suivantes :</p>
-          <ul>
-            <li><strong>Prestataires logistiques :</strong> Colissimo, Chronopost, DHL (pour la livraison)</li>
-            <li><strong>Prestataires de paiement :</strong> Stripe, PayPal (traitement sécurisé des paiements)</li>
-            <li><strong>Outils marketing :</strong> Mailchimp (newsletter), Google Analytics (audience anonymisée)</li>
-            <li><strong>Service client :</strong> Zendesk (gestion des tickets de support)</li>
-            <li><strong>Autorités légales :</strong> sur réquisition judiciaire uniquement</li>
-          </ul>
-          <p>Aucune donnée n'est vendue à des tiers. Les transferts hors UE sont encadrés par les clauses contractuelles types de la Commission européenne.</p>
-        </div>
-
-        <div class="legal-section" id="art6">
-          <h2>Article 6 – Durée de conservation</h2>
-          <ul>
-            <li><strong>Données de compte actif :</strong> durée de la relation commerciale + 3 ans</li>
-            <li><strong>Données de commande :</strong> 10 ans (obligation comptable)</li>
-            <li><strong>Données de navigation :</strong> 13 mois maximum (cookies analytiques)</li>
-            <li><strong>Données de newsletter :</strong> jusqu'à désinscription + 1 an</li>
-            <li><strong>Compte inactif :</strong> 3 ans sans connexion, puis suppression avec notification préalable</li>
-          </ul>
-        </div>
-
-        <div class="legal-section" id="art7">
-          <h2>Article 7 – Vos droits</h2>
-          <p>Conformément au RGPD, vous disposez des droits suivants sur vos données personnelles :</p>
-          <div class="row g-3 mt-1">
-            <div class="col-md-6">
-              <div class="rights-card">
-                <div class="rights-card-icon"><i class="bi bi-eye"></i></div>
-                <div>
-                  <div class="rights-card-title">Droit d'accès</div>
-                  <div class="rights-card-text">Obtenir une copie de toutes vos données personnelles que nous détenons.</div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="rights-card">
-                <div class="rights-card-icon"><i class="bi bi-pencil"></i></div>
-                <div>
-                  <div class="rights-card-title">Droit de rectification</div>
-                  <div class="rights-card-text">Corriger des données inexactes ou incomplètes vous concernant.</div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="rights-card">
-                <div class="rights-card-icon"><i class="bi bi-trash"></i></div>
-                <div>
-                  <div class="rights-card-title">Droit à l'effacement</div>
-                  <div class="rights-card-text">Demander la suppression de vos données (« droit à l'oubli »).</div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="rights-card">
-                <div class="rights-card-icon"><i class="bi bi-slash-circle"></i></div>
-                <div>
-                  <div class="rights-card-title">Droit d'opposition</div>
-                  <div class="rights-card-text">Vous opposer au traitement de vos données à des fins marketing.</div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="rights-card">
-                <div class="rights-card-icon"><i class="bi bi-lock"></i></div>
-                <div>
-                  <div class="rights-card-title">Droit à la limitation</div>
-                  <div class="rights-card-text">Suspendre temporairement le traitement de vos données.</div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="rights-card">
-                <div class="rights-card-icon"><i class="bi bi-download"></i></div>
-                <div>
-                  <div class="rights-card-title">Droit à la portabilité</div>
-                  <div class="rights-card-text">Recevoir vos données dans un format structuré et lisible.</div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <p class="mt-4">Pour exercer vos droits, contactez notre DPO à <a href="mailto:dpo@modeco.fr" style="color:var(--accent-color);">dpo@modeco.fr</a> ou via votre <a href="compte.html" style="color:var(--accent-color);">espace personnel</a>. Réponse sous 30 jours. En cas de désaccord, vous pouvez saisir la <a href="https://www.cnil.fr" target="_blank" style="color:var(--accent-color);">CNIL</a> (Commission Nationale de l'Informatique et des Libertés).</p>
-        </div>
-
-        <div class="legal-section" id="art8">
-          <h2>Article 8 – Sécurité des données</h2>
-          <p>Mode & Co. met en œuvre des mesures techniques et organisationnelles appropriées pour protéger vos données :</p>
-          <ul>
-            <li>Chiffrement SSL/TLS pour toutes les transmissions de données</li>
-            <li>Stockage sécurisé sur des serveurs certifiés ISO 27001 hébergés en France</li>
-            <li>Accès aux données restreint au personnel autorisé uniquement</li>
-            <li>Mots de passe hashés (bcrypt) — jamais stockés en clair</li>
-            <li>Audits de sécurité réguliers et tests de pénétration annuels</li>
-            <li>Procédure de notification en cas de violation de données (72h, RGPD art. 33)</li>
-          </ul>
-        </div>
-
-        <div class="legal-section" id="art9">
-          <h2>Article 9 – Mineurs</h2>
-          <p>Notre site est destiné à des personnes âgées d'au moins 16 ans. Nous ne collectons pas sciemment de données personnelles concernant des enfants de moins de 16 ans sans le consentement préalable vérifiable d'un titulaire de l'autorité parentale. Si vous constatez qu'un mineur nous a fourni des données sans consentement parental, contactez-nous immédiatement à <a href="mailto:dpo@modeco.fr" style="color:var(--accent-color);">dpo@modeco.fr</a>.</p>
-        </div>
-
-        <div class="legal-section" id="art10">
-          <h2>Article 10 – Modifications de la politique</h2>
-          <p>Mode & Co. se réserve le droit de modifier la présente politique de confidentialité à tout moment, notamment pour se conformer à l'évolution de la réglementation. Toute modification substantielle vous sera notifiée par email ou via un bandeau sur le site. La date de dernière mise à jour est indiquée en haut de ce document.</p>
-        </div>
-      </div>
+    <div class="legal-section">
+      <h2>9. Cookies</h2>
+      <p>Pour en savoir plus sur notre utilisation des cookies, consultez notre <a href="cookies.html" style="color:var(--accent-color);">Politique de Cookies</a>.</p>
     </div>
   </div>
 </section>
@@ -281,18 +190,10 @@
       <div class="col-6 col-lg-2">
         <p class="footer-heading">Informations</p>
         <ul class="footer-links">
-          <li><a href="apropos.html">À propos</a></li>
+          <li><a href="a-propos.html">À propos</a></li>
           <li><a href="cgv.html">CGV</a></li>
           <li><a href="confidentialite.html">Confidentialité</a></li>
           <li><a href="cookies.html">Cookies</a></li>
-        </ul>
-      </div>
-      <div class="col-6 col-lg-2">
-        <p class="footer-heading">Service</p>
-        <ul class="footer-links">
-          <li><a href="livraison.html">Livraison</a></li>
-          <li><a href="retours.html">Retours</a></li>
-          <li><a href="contact.html">Contact</a></li>
         </ul>
       </div>
     </div>
