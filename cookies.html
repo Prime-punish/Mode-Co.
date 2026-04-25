@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Politique Cookies – Mode & Co.</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Montserrat:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;1,300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    .page-hero{background:#000;padding:80px 0 50px;position:relative;}
+    .page-hero::before{content:'';position:absolute;inset:0;background:rgba(0,0,0,0.85);}
+    .page-hero .container{position:relative;z-index:2;}
+    .legal-nav{position:sticky;top:90px;background:#fff;border:1px solid var(--border-light);border-radius:var(--radius-lg);padding:24px;}
+    .legal-nav-item{display:block;padding:8px 12px;border-radius:var(--radius-sm);color:var(--text-secondary);font-size:0.82rem;text-decoration:none;transition:all 0.2s;margin-bottom:4px;}
+    .legal-nav-item:hover{background:var(--accent-ghost);color:var(--accent-color);}
+    .legal-section{margin-bottom:48px;}
+    .legal-section h2{font-family:var(--font-heading);font-size:1.4rem;font-weight:700;margin-bottom:16px;padding-bottom:12px;border-bottom:2px solid var(--accent-color);}
+    .legal-section h3{font-size:1rem;font-weight:700;margin:20px 0 10px;color:var(--text-primary);}
+    .legal-section p,.legal-section li{color:var(--text-secondary);line-height:1.9;font-size:0.9rem;}
+    .legal-section ul{padding-left:20px;}
+    .legal-section li{margin-bottom:6px;}
+    .last-updated{background:var(--bg-light);border-left:4px solid var(--accent-color);padding:12px 20px;border-radius:0 var(--radius-sm) var(--radius-sm) 0;font-size:0.8rem;color:var(--text-secondary);margin-bottom:40px;}
+    /* Cookie table */
+    .cookie-table{width:100%;border-collapse:separate;border-spacing:0;font-size:0.82rem;border:1px solid var(--border-light);border-radius:var(--radius-md);overflow:hidden;margin-bottom:24px;}
+    .cookie-table th{background:var(--bg-light);padding:12px 16px;text-align:left;font-weight:700;font-size:0.75rem;letter-spacing:1px;text-transform:uppercase;color:var(--text-secondary);border-bottom:1px solid var(--border-light);}
+    .cookie-table td{padding:12px 16px;color:var(--text-secondary);border-bottom:1px solid var(--border-light);vertical-align:top;line-height:1.6;}
+    .cookie-table tr:last-child td{border-bottom:none;}
+    .cookie-table tr:hover td{background:var(--bg-light);}
+    .badge-essential{background:#e8f5e9;color:#2e7d32;font-size:0.7rem;font-weight:700;padding:3px 10px;border-radius:20px;white-space:nowrap;}
+    .badge-analytics{background:#e3f2fd;color:#1565c0;font-size:0.7rem;font-weight:700;padding:3px 10px;border-radius:20px;white-space:nowrap;}
+    .badge-marketing{background:#fff3e0;color:#e65100;font-size:0.7rem;font-weight:700;padding:3px 10px;border-radius:20px;white-space:nowrap;}
+    /* Consent toggle */
+    .consent-card{background:#fff;border:1px solid var(--border-light);border-radius:var(--radius-lg);padding:22px 24px;margin-bottom:14px;display:flex;align-items:center;justify-content:space-between;gap:20px;}
+    .consent-card-info{flex:1;}
+    .consent-card-title{font-weight:700;font-size:0.92rem;margin-bottom:4px;display:flex;align-items:center;gap:8px;}
+    .consent-card-desc{font-size:0.82rem;color:var(--text-secondary);line-height:1.6;}
+    .consent-toggle{position:relative;width:50px;height:26px;flex-shrink:0;}
+    .consent-toggle input{opacity:0;width:0;height:0;}
+    .consent-slider{position:absolute;cursor:pointer;inset:0;background:#ccc;border-radius:26px;transition:.3s;}
+    .consent-slider:before{content:'';position:absolute;height:20px;width:20px;left:3px;bottom:3px;background:#fff;border-radius:50%;transition:.3s;}
+    .consent-toggle input:checked + .consent-slider{background:var(--accent-color);}
+    .consent-toggle input:checked + .consent-slider:before{transform:translateX(24px);}
+    .consent-toggle input:disabled + .consent-slider{cursor:default;opacity:0.8;}
+    .btn-consent-save{background:var(--accent-color);color:#fff;border:none;padding:12px 32px;border-radius:var(--radius-sm);font-weight:600;font-size:0.9rem;cursor:pointer;transition:opacity 0.2s;}
+    .btn-consent-save:hover{opacity:0.88;}
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<header class="navbar navbar-expand-lg sticky-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">MODE <span>& Co.</span></a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link" href="index.html">Accueil</a></li>
+        <li class="nav-item"><a class="nav-link" href="products.html">Vêtements</a></li>
+        <li class="nav-item"><a class="nav-link" href="products.html?cat=chaussures">Chaussures</a></li>
+        <li class="nav-item"><a class="nav-link" href="products.html?cat=accessoires">Accessoires</a></li>
+        <li class="nav-item"><a class="nav-link" href="apropos.html">À propos</a></li>
+      </ul>
+    </div>
+    <div class="d-flex align-items-center gap-2">
+      <a href="products.html" class="cart-icon-wrapper text-dark"><i class="bi bi-search fs-5"></i></a>
+      <a href="compte.html" class="cart-icon-wrapper text-dark"><i class="bi bi-person fs-5"></i></a>
+      <a href="card.html" class="cart-icon-wrapper text-dark position-relative">
+        <i class="bi bi-bag fs-5"></i>
+        <span class="cart-badge badge rounded-pill bg-warning text-dark">0</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<div class="page-hero">
+  <div class="container">
+    <span style="font-size:0.65rem;font-weight:600;letter-spacing:4px;text-transform:uppercase;color:var(--accent-color);display:block;margin-bottom:12px;">Informations légales</span>
+    <h1 style="font-family:var(--font-heading);font-size:clamp(2rem,4vw,3.5rem);font-weight:900;color:#fff;">Politique <span style="color:var(--accent-color);font-style:italic;">Cookies</span></h1>
+  </div>
+</div>
+
+<section class="section-padding" style="background:var(--bg-light);">
+  <div class="container">
+    <div class="row g-5">
+      <!-- Sidebar Nav -->
+      <div class="col-lg-3 d-none d-lg-block">
+        <div class="legal-nav">
+          <div style="font-size:0.65rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);margin-bottom:12px;">Sommaire</div>
+          <a class="legal-nav-item" href="#art1">1. Qu'est-ce qu'un cookie ?</a>
+          <a class="legal-nav-item" href="#art2">2. Cookies essentiels</a>
+          <a class="legal-nav-item" href="#art3">3. Cookies analytiques</a>
+          <a class="legal-nav-item" href="#art4">4. Cookies marketing</a>
+          <a class="legal-nav-item" href="#art5">5. Tableau récapitulatif</a>
+          <a class="legal-nav-item" href="#art6">6. Gérer vos préférences</a>
+          <a class="legal-nav-item" href="#art7">7. Durée de vie</a>
+          <a class="legal-nav-item" href="#art8">8. Contact</a>
+          <div style="margin-top:20px;padding-top:16px;border-top:1px solid var(--border-light);">
+            <a href="confidentialite.html" class="legal-nav-item" style="color:var(--accent-color);font-weight:600;">
+              <i class="bi bi-shield-check me-2"></i>Confidentialité →
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Content -->
+      <div class="col-lg-9">
+        <div class="last-updated"><i class="bi bi-calendar3 me-2"></i>Dernière mise à jour : 1er janvier 2026 — Conforme aux recommandations CNIL</div>
+
+        <div class="legal-section" id="art1">
+          <h2>Article 1 – Qu'est-ce qu'un cookie ?</h2>
+          <p>Un cookie est un petit fichier texte déposé sur votre terminal (ordinateur, tablette, smartphone) lors de votre visite sur notre site. Il permet à Mode & Co. de reconnaître votre navigateur, de mémoriser vos préférences et d'améliorer votre expérience d'achat.</p>
+          <p>Conformément à la directive ePrivacy et aux recommandations de la CNIL, certains cookies nécessitent votre consentement préalable avant d'être déposés. D'autres, indispensables au fonctionnement du site, sont exemptés de consentement.</p>
+        </div>
+
+        <div class="legal-section" id="art2">
+          <h2>Article 2 – Cookies essentiels (exemptés de consentement)</h2>
+          <p>Ces cookies sont strictement nécessaires au fonctionnement du site. Ils ne peuvent pas être désactivés sans altérer votre expérience de navigation.</p>
+          <ul>
+            <li><strong>Panier :</strong> mémorise les articles ajoutés à votre panier (localStorage, côté client)</li>
+            <li><strong>Session :</strong> maintient votre connexion lors de la navigation entre les pages</li>
+            <li><strong>Préférence RGPD :</strong> enregistre votre choix de consentement aux cookies</li>
+            <li><strong>Sécurité :</strong> protège contre les attaques CSRF (cross-site request forgery)</li>
+          </ul>
+        </div>
+
+        <div class="legal-section" id="art3">
+          <h2>Article 3 – Cookies analytiques (consentement requis)</h2>
+          <p>Ces cookies nous permettent de comprendre comment les visiteurs utilisent notre site afin d'en améliorer les performances et l'ergonomie. Les données sont agrégées et anonymisées.</p>
+          <ul>
+            <li><strong>Google Analytics 4 :</strong> mesure d'audience, pages visitées, sources de trafic, taux de rebond</li>
+            <li><strong>Hotjar :</strong> enregistrements de sessions anonymisés, heatmaps de navigation</li>
+          </ul>
+          <p>Ces cookies sont désactivés par défaut et ne sont activés qu'après votre consentement explicite.</p>
+        </div>
+
+        <div class="legal-section" id="art4">
+          <h2>Article 4 – Cookies marketing (consentement requis)</h2>
+          <p>Ces cookies sont utilisés pour afficher des publicités personnalisées et mesurer l'efficacité de nos campagnes. Ils peuvent être déposés par nos partenaires tiers.</p>
+          <ul>
+            <li><strong>Meta Pixel (Facebook/Instagram) :</strong> ciblage publicitaire et mesure des conversions</li>
+            <li><strong>Google Ads :</strong> remarketing et suivi des conversions publicitaires</li>
+            <li><strong>Pinterest Tag :</strong> publicités Pinterest personnalisées</li>
+            <li><strong>TikTok Pixel :</strong> mesure de performance des campagnes TikTok</li>
+          </ul>
+          <p>Ces cookies sont désactivés par défaut. En les refusant, vous verrez toujours des publicités, mais elles ne seront pas personnalisées.</p>
+        </div>
+
+        <div class="legal-section" id="art5">
+          <h2>Article 5 – Tableau récapitulatif</h2>
+          <table class="cookie-table">
+            <thead>
+              <tr>
+                <th>Cookie</th>
+                <th>Catégorie</th>
+                <th>Fournisseur</th>
+                <th>Durée</th>
+                <th>Finalité</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>modeCoCart</code></td>
+                <td><span class="badge-essential">Essentiel</span></td>
+                <td>Mode & Co.</td>
+                <td>Session</td>
+                <td>Contenu du panier</td>
+              </tr>
+              <tr>
+                <td><code>mc_session</code></td>
+                <td><span class="badge-essential">Essentiel</span></td>
+                <td>Mode & Co.</td>
+                <td>Session</td>
+                <td>Authentification</td>
+              </tr>
+              <tr>
+                <td><code>mc_consent</code></td>
+                <td><span class="badge-essential">Essentiel</span></td>
+                <td>Mode & Co.</td>
+                <td>13 mois</td>
+                <td>Choix RGPD</td>
+              </tr>
+              <tr>
+                <td><code>_ga</code></td>
+                <td><span class="badge-analytics">Analytique</span></td>
+                <td>Google</td>
+                <td>13 mois</td>
+                <td>Statistiques de visite</td>
+              </tr>
+              <tr>
+                <td><code>_ga_*</code></td>
+                <td><span class="badge-analytics">Analytique</span></td>
+                <td>Google</td>
+                <td>13 mois</td>
+                <td>Session Analytics 4</td>
+              </tr>
+              <tr>
+                <td><code>_hjSession*</code></td>
+                <td><span class="badge-analytics">Analytique</span></td>
+                <td>Hotjar</td>
+                <td>30 min</td>
+                <td>Enregistrement session</td>
+              </tr>
+              <tr>
+                <td><code>_fbp</code></td>
+                <td><span class="badge-marketing">Marketing</span></td>
+                <td>Meta</td>
+                <td>3 mois</td>
+                <td>Publicité Facebook/Instagram</td>
+              </tr>
+              <tr>
+                <td><code>_gcl_au</code></td>
+                <td><span class="badge-marketing">Marketing</span></td>
+                <td>Google</td>
+                <td>3 mois</td>
+                <td>Conversions Google Ads</td>
+              </tr>
+              <tr>
+                <td><code>tt_pixel_session</code></td>
+                <td><span class="badge-marketing">Marketing</span></td>
+                <td>TikTok</td>
+                <td>13 mois</td>
+                <td>Publicité TikTok</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="legal-section" id="art6">
+          <h2>Article 6 – Gérer vos préférences</h2>
+          <p>Vous pouvez à tout moment modifier vos choix en matière de cookies. Vos préférences sont enregistrées et respectées immédiatement.</p>
+
+          <div class="mt-4">
+            <div class="consent-card">
+              <div class="consent-card-info">
+                <div class="consent-card-title">
+                  <i class="bi bi-shield-fill-check" style="color:var(--accent-color);"></i>
+                  Cookies essentiels
+                </div>
+                <div class="consent-card-desc">Indispensables au fonctionnement du site. Ne peuvent pas être désactivés.</div>
+              </div>
+              <label class="consent-toggle">
+                <input type="checkbox" checked disabled>
+                <span class="consent-slider"></span>
+              </label>
+            </div>
+
+            <div class="consent-card">
+              <div class="consent-card-info">
+                <div class="consent-card-title">
+                  <i class="bi bi-bar-chart-fill" style="color:#1565c0;"></i>
+                  Cookies analytiques
+                </div>
+                <div class="consent-card-desc">Nous aident à comprendre comment vous utilisez notre site pour l'améliorer.</div>
+              </div>
+              <label class="consent-toggle">
+                <input type="checkbox" id="analytics-toggle">
+                <span class="consent-slider"></span>
+              </label>
+            </div>
+
+            <div class="consent-card">
+              <div class="consent-card-info">
+                <div class="consent-card-title">
+                  <i class="bi bi-megaphone-fill" style="color:#e65100;"></i>
+                  Cookies marketing
+                </div>
+                <div class="consent-card-desc">Permettent d'afficher des publicités personnalisées sur nos partenaires.</div>
+              </div>
+              <label class="consent-toggle">
+                <input type="checkbox" id="marketing-toggle">
+                <span class="consent-slider"></span>
+              </label>
+            </div>
+
+            <div class="mt-4 d-flex gap-3 flex-wrap">
+              <button class="btn-consent-save" onclick="saveConsent()">
+                <i class="bi bi-check2 me-2"></i>Enregistrer mes préférences
+              </button>
+              <button class="btn-consent-save" style="background:var(--text-secondary);" onclick="acceptAll()">
+                Tout accepter
+              </button>
+              <button class="btn-consent-save" style="background:#fff;color:var(--text-secondary);border:1px solid var(--border-light);" onclick="rejectAll()">
+                Tout refuser
+              </button>
+            </div>
+          </div>
+
+          <h3 class="mt-5">Gérer via votre navigateur</h3>
+          <p>Vous pouvez également gérer les cookies directement depuis votre navigateur :</p>
+          <ul>
+            <li><strong>Chrome :</strong> Paramètres → Confidentialité et sécurité → Cookies</li>
+            <li><strong>Firefox :</strong> Paramètres → Vie privée et sécurité → Cookies</li>
+            <li><strong>Safari :</strong> Préférences → Confidentialité → Gérer les données des sites</li>
+            <li><strong>Edge :</strong> Paramètres → Cookies et autorisations de site</li>
+          </ul>
+          <p>Attention : la désactivation de tous les cookies peut affecter le fonctionnement de notre site (panier, connexion, etc.).</p>
+        </div>
+
+        <div class="legal-section" id="art7">
+          <h2>Article 7 – Durée de vie et renouvellement du consentement</h2>
+          <p>Votre consentement est conservé pendant <strong>13 mois</strong> maximum, conformément aux recommandations de la CNIL. Passé ce délai, nous vous demanderons à nouveau votre accord. Vous pouvez retirer votre consentement à tout moment sur cette page ou via le bandeau cookies accessible en bas de chaque page du site.</p>
+        </div>
+
+        <div class="legal-section" id="art8">
+          <h2>Article 8 – Contact</h2>
+          <p>Pour toute question relative à notre politique cookies ou pour exercer vos droits, contactez notre Délégué à la Protection des Données :</p>
+          <p>
+            <strong>Mode & Co. — DPO</strong><br>
+            12 Rue des Francs Bourgeois, 75003 Paris<br>
+            Email : <a href="mailto:dpo@modeco.fr" style="color:var(--accent-color);">dpo@modeco.fr</a><br>
+            Pour en savoir plus sur vos droits : <a href="confidentialite.html" style="color:var(--accent-color);">Politique de Confidentialité</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="row g-5">
+      <div class="col-lg-4">
+        <div class="footer-brand">MODE <span>& Co.</span></div>
+        <p class="footer-desc">Votre destination mode pour des vêtements, chaussures et accessoires soigneusement sélectionnés.</p>
+      </div>
+      <div class="col-6 col-lg-2">
+        <p class="footer-heading">Informations</p>
+        <ul class="footer-links">
+          <li><a href="apropos.html">À propos</a></li>
+          <li><a href="cgv.html">CGV</a></li>
+          <li><a href="confidentialite.html">Confidentialité</a></li>
+          <li><a href="cookies.html">Cookies</a></li>
+        </ul>
+      </div>
+      <div class="col-6 col-lg-2">
+        <p class="footer-heading">Service</p>
+        <ul class="footer-links">
+          <li><a href="livraison.html">Livraison</a></li>
+          <li><a href="retours.html">Retours</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <hr class="footer-divider">
+    <div class="footer-bottom"><span>© 2026 Mode & Co. Tous droits réservés.</span></div>
+  </div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/main.js"></script>
+<script>
+  // Load saved preferences
+  const saved = JSON.parse(localStorage.getItem('mc_consent') || '{}');
+  if (saved.analytics) document.getElementById('analytics-toggle').checked = true;
+  if (saved.marketing) document.getElementById('marketing-toggle').checked = true;
+
+  function saveConsent() {
+    const prefs = {
+      essential: true,
+      analytics: document.getElementById('analytics-toggle').checked,
+      marketing: document.getElementById('marketing-toggle').checked,
+      savedAt: Date.now()
+    };
+    localStorage.setItem('mc_consent', JSON.stringify(prefs));
+    const btn = event.target;
+    btn.innerHTML = '<i class="bi bi-check2-circle me-2"></i>Préférences enregistrées !';
+    btn.style.background = '#2e7d32';
+    setTimeout(() => {
+      btn.innerHTML = '<i class="bi bi-check2 me-2"></i>Enregistrer mes préférences';
+      btn.style.background = '';
+    }, 2500);
+  }
+
+  function acceptAll() {
+    document.getElementById('analytics-toggle').checked = true;
+    document.getElementById('marketing-toggle').checked = true;
+    localStorage.setItem('mc_consent', JSON.stringify({ essential:true, analytics:true, marketing:true, savedAt: Date.now() }));
+  }
+
+  function rejectAll() {
+    document.getElementById('analytics-toggle').checked = false;
+    document.getElementById('marketing-toggle').checked = false;
+    localStorage.setItem('mc_consent', JSON.stringify({ essential:true, analytics:false, marketing:false, savedAt: Date.now() }));
+  }
+</script>
+</body>
+</html>

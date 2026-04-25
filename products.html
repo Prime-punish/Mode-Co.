@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catalogue – Mode & Co.</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Montserrat:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;1,300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<header class="navbar navbar-expand-lg sticky-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">MODE <span>& Co.</span></a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link" href="index.html">Accueil</a></li>
+        <li class="nav-item"><a class="nav-link active" href="products.html">Vêtements</a></li>
+        <li class="nav-item"><a class="nav-link" href="products.html?cat=chaussures">Chaussures</a></li>
+        <li class="nav-item"><a class="nav-link" href="products.html?cat=accessoires">Accessoires</a></li>
+      </ul>
+    </div>
+    <div class="d-flex align-items-center gap-2">
+      <a href="card.html" class="cart-icon-wrapper text-dark position-relative">
+        <i class="bi bi-bag fs-5"></i>
+        <span class="cart-badge badge rounded-pill bg-warning text-dark">0</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb-section">
+  <div class="container">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="index.html">Accueil</a></li>
+        <li class="breadcrumb-item active">Catalogue</li>
+      </ol>
+    </nav>
+  </div>
+</div>
+
+<!-- PAGE HEADER -->
+<section style="background:var(--primary-color);padding:56px 0 40px;">
+  <div class="container">
+    <div class="text-center" data-reveal>
+      <span style="font-size:0.65rem;letter-spacing:4px;text-transform:uppercase;color:var(--accent-color);font-weight:600;">Printemps 2026</span>
+      <h1 style="font-family:var(--font-heading);font-size:clamp(2.5rem,5vw,4rem);color:#fff;margin-top:12px;">Tous nos <em style="color:var(--accent-color);">Produits</em></h1>
+    </div>
+  </div>
+</section>
+
+<!-- FILTER TABS -->
+<div style="background:var(--bg-light);border-bottom:1px solid var(--border-light);padding:20px 0;position:sticky;top:72px;z-index:40;backdrop-filter:blur(10px);">
+  <div class="container">
+    <div class="d-flex align-items-center justify-content-between flex-wrap gap-3">
+      <div class="d-flex gap-2 flex-wrap">
+        <button class="btn btn-sm filter-tab active" data-filter="all" style="border-radius:40px;padding:8px 20px;font-size:0.72rem;letter-spacing:1px;">Tout (850)</button>
+        <button class="btn btn-sm btn-outline-dark filter-tab" data-filter="vetements" style="border-radius:40px;padding:8px 20px;font-size:0.72rem;letter-spacing:1px;">Vêtements (320)</button>
+        <button class="btn btn-sm btn-outline-dark filter-tab" data-filter="chaussures" style="border-radius:40px;padding:8px 20px;font-size:0.72rem;letter-spacing:1px;">Chaussures (180)</button>
+        <button class="btn btn-sm btn-outline-dark filter-tab" data-filter="accessoires" style="border-radius:40px;padding:8px 20px;font-size:0.72rem;letter-spacing:1px;">Accessoires (350)</button>
+      </div>
+      <div class="d-flex align-items-center gap-3">
+        <select class="form-select form-select-sm" id="sort-select" style="border-radius:40px;padding:8px 16px;font-size:0.75rem;border:1px solid var(--border-light);width:auto;min-width:160px;">
+          <option value="default">Pertinence</option>
+          <option value="asc">Prix croissant</option>
+          <option value="desc">Prix décroissant</option>
+          <option value="new">Nouveautés</option>
+        </select>
+        <div class="d-flex gap-1">
+          <button id="view-grid" class="btn btn-sm" style="width:34px;height:34px;padding:0;border:1px solid var(--border-light);border-radius:6px;background:#fff;">
+            <i class="bi bi-grid-3x3-gap"></i>
+          </button>
+          <button id="view-list" class="btn btn-sm" style="width:34px;height:34px;padding:0;border:1px solid var(--border-light);border-radius:6px;background:var(--bg-light);">
+            <i class="bi bi-list-ul"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<section class="section-padding-sm">
+  <div class="container">
+    <div class="row g-4">
+
+      <!-- SIDEBAR FILTERS -->
+      <div class="col-lg-3">
+        <div class="filter-panel" data-reveal="left">
+          <div class="filter-title">
+            <span>Filtres</span>
+            <span class="filter-reset">Effacer tout</span>
+          </div>
+
+          <!-- Catégorie -->
+          <div class="filter-group">
+            <p class="filter-group-title">Catégorie</p>
+            <label class="filter-check"><input type="checkbox" checked><span class="filter-check-label">Vêtements</span><span class="filter-check-count">320</span></label>
+            <label class="filter-check"><input type="checkbox"><span class="filter-check-label">Chaussures</span><span class="filter-check-count">180</span></label>
+            <label class="filter-check"><input type="checkbox"><span class="filter-check-label">Accessoires</span><span class="filter-check-count">350</span></label>
+          </div>
+
+          <!-- Prix -->
+          <div class="filter-group">
+            <p class="filter-group-title">Prix max <span id="price-label" style="color:var(--accent-color);font-weight:600;">200€</span></p>
+            <input type="range" class="price-range-slider" min="0" max="500" value="200" step="10">
+            <div class="d-flex justify-content-between mt-2" style="font-size:0.72rem;color:var(--text-muted);">
+              <span>0€</span><span>500€</span>
+            </div>
+          </div>
+
+          <!-- Couleur -->
+          <div class="filter-group">
+            <p class="filter-group-title">Couleur</p>
+            <div class="color-swatches">
+              <div class="color-swatch active" style="background:#000;"></div>
+              <div class="color-swatch" style="background:#fff;border:1px solid #ddd;"></div>
+              <div class="color-swatch" style="background:#D4AF37;"></div>
+              <div class="color-swatch" style="background:#E53E3E;"></div>
+              <div class="color-swatch" style="background:#2B6CB0;"></div>
+              <div class="color-swatch" style="background:#276749;"></div>
+              <div class="color-swatch" style="background:#C05621;"></div>
+              <div class="color-swatch" style="background:#E2E8F0;border:1px solid #ddd;"></div>
+            </div>
+          </div>
+
+          <!-- Taille -->
+          <div class="filter-group">
+            <p class="filter-group-title">Taille</p>
+            <div class="d-flex flex-wrap gap-2">
+              <button class="size-btn active">XS</button>
+              <button class="size-btn">S</button>
+              <button class="size-btn">M</button>
+              <button class="size-btn">L</button>
+              <button class="size-btn">XL</button>
+              <button class="size-btn">XXL</button>
+            </div>
+          </div>
+
+          <!-- Genre -->
+          <div class="filter-group">
+            <p class="filter-group-title">Genre</p>
+            <label class="filter-check"><input type="checkbox" checked><span class="filter-check-label">Femme</span></label>
+            <label class="filter-check"><input type="checkbox"><span class="filter-check-label">Homme</span></label>
+            <label class="filter-check"><input type="checkbox"><span class="filter-check-label">Unisexe</span></label>
+            <label class="filter-check"><input type="checkbox"><span class="filter-check-label">Enfant</span></label>
+          </div>
+
+          <button class="btn btn-warning w-100">Appliquer les filtres</button>
+        </div>
+      </div>
+
+      <!-- PRODUCTS GRID -->
+      <div class="col-lg-9">
+        <div class="row g-4" id="products-grid">
+
+          <!-- Produit 1 -->
+          <div class="col-sm-6 col-xl-4 product-card-wrapper" data-category="vetements" data-price="49.99" data-reveal data-delay="0">
+            <div class="product-card h-100" data-product>
+              <div class="product-card-img">
+                <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=500&q=80" alt="Robe">
+                <span class="product-badge badge-new">Nouveau</span>
+                <button class="product-wishlist" data-id="p001"><i class="bi bi-heart"></i></button>
+                <div class="product-quick-actions">
+                  <a href="product-detail.html" class="btn btn-outline-dark btn-sm">Voir</a>
+                  <button class="btn btn-warning btn-sm add-to-cart" data-id="1001">+ Panier</button>
+                </div>
+              </div>
+              <div class="product-card-body">
+                <p class="product-category">Vêtements · Femme</p>
+                <h6 class="product-name">Robe d'été florale</h6>
+                <p class="product-desc">Coton biologique, coupe évasée</p>
+                <div class="product-price-row">
+                  <span class="product-price">€49,99</span>
+                  <span class="product-stars">★★★★★</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Produit 2 -->
+          <div class="col-sm-6 col-xl-4 product-card-wrapper" data-category="chaussures" data-price="89.99" data-reveal data-delay="100">
+            <div class="product-card h-100" data-product>
+              <div class="product-card-img">
+                <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500&q=80" alt="Sneakers">
+                <span class="product-badge badge-gold">Best Seller</span>
+                <button class="product-wishlist" data-id="p002"><i class="bi bi-heart"></i></button>
+                <div class="product-quick-actions">
+                  <a href="product-detail.html" class="btn btn-outline-dark btn-sm">Voir</a>
+                  <button class="btn btn-warning btn-sm add-to-cart" data-id="1002">+ Panier</button>
+                </div>
+              </div>
+              <div class="product-card-body">
+                <p class="product-category">Chaussures · Unisexe</p>
+                <h6 class="product-name">Sneakers urbaines premium</h6>
+                <p class="product-desc">Semelle ergonomique</p>
+                <div class="product-price-row">
+                  <span class="product-price">€89,99</span>
+                  <span class="product-stars">★★★★☆</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Produit 3 -->
+          <div class="col-sm-6 col-xl-4 product-card-wrapper" data-category="accessoires" data-price="103.99" data-reveal data-delay="200">
+            <div class="product-card h-100" data-product>
+              <div class="product-card-img">
+                <img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=500&q=80" alt="Sac">
+                <span class="product-badge badge-sale">-20%</span>
+                <button class="product-wishlist" data-id="p003"><i class="bi bi-heart"></i></button>
+                <div class="product-quick-actions">
+                  <a href="product-detail.html" class="btn btn-outline-dark btn-sm">Voir</a>
+                  <button class="btn btn-warning btn-sm add-to-cart" data-id="1003">+ Panier</button>
+                </div>
+              </div>
+              <div class="product-card-body">
+                <p class="product-category">Accessoires · Luxe</p>
+                <h6 class="product-name">Sac à main cuir véritable</h6>
+                <p class="product-desc">Cuir pleine fleur, fait main</p>
+                <div class="product-price-row">
+                  <div>
+                    <span class="product-price">€103,99</span>
+                    <span class="product-price-old">€129,99</span>
+                  </div>
+                  <span class="product-stars">★★★★★</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Produit 4 -->
+          <div class="col-sm-6 col-xl-4 product-card-wrapper" data-category="accessoires" data-price="79.99" data-reveal data-delay="0">
+            <div class="product-card h-100" data-product>
+              <div class="product-card-img">
+                <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500&q=80" alt="Montre">
+                <button class="product-wishlist" data-id="p004"><i class="bi bi-heart"></i></button>
+                <div class="product-quick-actions">
+                  <a href="product-detail.html" class="btn btn-outline-dark btn-sm">Voir</a>
+                  <button class="btn btn-warning btn-sm add-to-cart" data-id="1004">+ Panier</button>
+                </div>
+              </div>
+              <div class="product-card-body">
+                <p class="product-category">Accessoires · Premium</p>
+                <h6 class="product-name">Montre classique dorée</h6>
+                <p class="product-desc">Boîtier acier, bracelet cuir</p>
+                <div class="product-price-row">
+                  <span class="product-price">€79,99</span>
+                  <span class="product-stars">★★★★☆</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Produit 5 -->
+          <div class="col-sm-6 col-xl-4 product-card-wrapper" data-category="vetements" data-price="64.99" data-reveal data-delay="100">
+            <div class="product-card h-100" data-product>
+              <div class="product-card-img">
+                <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=500&q=80" alt="Veste">
+                <span class="product-badge badge-new">Nouveau</span>
+                <button class="product-wishlist" data-id="p005"><i class="bi bi-heart"></i></button>
+                <div class="product-quick-actions">
+                  <a href="product-detail.html" class="btn btn-outline-dark btn-sm">Voir</a>
+                  <button class="btn btn-warning btn-sm add-to-cart" data-id="1005">+ Panier</button>
+                </div>
+              </div>
+              <div class="product-card-body">
+                <p class="product-category">Vêtements · Homme</p>
+                <h6 class="product-name">Veste casual structurée</h6>
+                <p class="product-desc">Lin & coton, coupe moderne</p>
+                <div class="product-price-row">
+                  <span class="product-price">€64,99</span>
+                  <span class="product-stars">★★★★★</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Produit 6 -->
+          <div class="col-sm-6 col-xl-4 product-card-wrapper" data-category="chaussures" data-price="149.99" data-reveal data-delay="200">
+            <div class="product-card h-100" data-product>
+              <div class="product-card-img">
+                <img src="https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=500&q=80" alt="Boots">
+                <button class="product-wishlist" data-id="p006"><i class="bi bi-heart"></i></button>
+                <div class="product-quick-actions">
+                  <a href="product-detail.html" class="btn btn-outline-dark btn-sm">Voir</a>
+                  <button class="btn btn-warning btn-sm add-to-cart" data-id="1006">+ Panier</button>
+                </div>
+              </div>
+              <div class="product-card-body">
+                <p class="product-category">Chaussures · Femme</p>
+                <h6 class="product-name">Boots en cuir Milano</h6>
+                <p class="product-desc">Cuir nappa souple, semelle crantée</p>
+                <div class="product-price-row">
+                  <span class="product-price">€149,99</span>
+                  <span class="product-stars">★★★★★</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- PAGINATION -->
+        <div class="d-flex justify-content-center align-items-center gap-2 mt-5" data-reveal>
+          <button class="btn btn-outline-dark" style="width:42px;height:42px;border-radius:50%;padding:0;">←</button>
+          <button class="btn btn-gold" style="width:42px;height:42px;border-radius:50%;padding:0;font-weight:700;">1</button>
+          <button class="btn btn-outline-dark" style="width:42px;height:42px;border-radius:50%;padding:0;">2</button>
+          <button class="btn btn-outline-dark" style="width:42px;height:42px;border-radius:50%;padding:0;">3</button>
+          <span style="color:var(--text-muted);font-size:0.85rem;">...</span>
+          <button class="btn btn-outline-dark" style="width:42px;height:42px;border-radius:50%;padding:0;">12</button>
+          <button class="btn btn-outline-dark" style="width:42px;height:42px;border-radius:50%;padding:0;">→</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-bottom">
+      <span>© 2026 Mode & Co. Tous droits réservés.</span>
+      <a href="index.html" style="color:var(--accent-color);font-size:0.8rem;">← Retour à l'accueil</a>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/main.js"></script>
+<script>
+  // Filter tab active state
+  document.querySelectorAll('.filter-tab').forEach(btn => {
+    btn.addEventListener('click', function() {
+      document.querySelectorAll('.filter-tab').forEach(b => {
+        b.classList.remove('active', 'btn-warning');
+        b.classList.add('btn-outline-dark');
+      });
+      this.classList.add('active', 'btn-warning');
+      this.classList.remove('btn-outline-dark');
+    });
+  });
+</script>
+</body>
+</html>

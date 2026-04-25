@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mon Panier – Mode & Co.</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Montserrat:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;1,300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    .promo-input{border:1.5px solid var(--border-light);border-radius:var(--radius-sm) 0 0 var(--radius-sm);padding:10px 16px;font-family:var(--font-body);font-size:0.85rem;outline:none;width:100%;transition:border-color 0.2s;}
+    .promo-input:focus{border-color:var(--accent-color);}
+    .promo-btn{border-radius:0 var(--radius-sm) var(--radius-sm) 0;padding:10px 20px;font-size:0.75rem;white-space:nowrap;}
+    .step-indicator{display:flex;align-items:center;gap:0;}
+    .step{display:flex;align-items:center;gap:8px;font-size:0.75rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;}
+    .step-num{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.8rem;font-weight:700;}
+    .step.active .step-num{background:var(--accent-color);color:#000;}
+    .step.done .step-num{background:#22c55e;color:#fff;}
+    .step.inactive .step-num{background:var(--bg-light);color:var(--text-muted);}
+    .step.done{color:#22c55e;}
+    .step.active{color:var(--text-primary);}
+    .step.inactive{color:var(--text-muted);}
+    .step-line{flex:1;height:1px;background:var(--border-light);margin:0 8px;min-width:20px;}
+    .payment-icon{height:24px;border-radius:4px;opacity:0.6;transition:opacity 0.2s;}
+    .payment-icon:hover{opacity:1;}
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<header class="navbar navbar-expand-lg sticky-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">MODE <span>& Co.</span></a>
+    <div class="d-flex align-items-center gap-2 ms-auto">
+      <a href="card.html" class="cart-icon-wrapper text-dark position-relative">
+        <i class="bi bi-bag fs-5" style="color:var(--accent-color);"></i>
+        <span class="cart-badge badge rounded-pill bg-warning text-dark">0</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb-section">
+  <div class="container">
+    <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb mb-0">
+          <li class="breadcrumb-item"><a href="index.html">Accueil</a></li>
+          <li class="breadcrumb-item"><a href="products.html">Catalogue</a></li>
+          <li class="breadcrumb-item active">Panier</li>
+        </ol>
+      </nav>
+      <!-- Steps -->
+      <div class="step-indicator">
+        <div class="step active"><div class="step-num">1</div><span>Panier</span></div>
+        <div class="step-line"></div>
+        <div class="step inactive"><div class="step-num">2</div><span>Livraison</span></div>
+        <div class="step-line"></div>
+        <div class="step inactive"><div class="step-num">3</div><span>Paiement</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CART CONTENT -->
+<section class="section-padding-sm">
+  <div class="container">
+    <div class="d-flex justify-content-between align-items-end mb-4 flex-wrap gap-3" data-reveal>
+      <h1 style="font-family:var(--font-heading);font-size:2.2rem;">Mon <em style="color:var(--accent-color);">Panier</em></h1>
+      <a href="products.html" style="font-size:0.8rem;color:var(--text-muted);display:flex;align-items:center;gap:6px;">
+        <i class="bi bi-arrow-left"></i> Continuer mes achats
+      </a>
+    </div>
+
+    <div class="row g-4">
+      <!-- ITEMS -->
+      <div class="col-lg-8">
+
+        <!-- Cart Table Header -->
+        <div class="cart-table-header d-none d-md-grid" style="font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);font-weight:600;padding:14px 24px;border-bottom:1px solid var(--border-light);">
+          <span>Produit</span>
+          <span style="text-align:center;">Prix</span>
+          <span style="text-align:center;">Quantité</span>
+          <span style="text-align:right;">Total</span>
+          <span></span>
+        </div>
+
+        <!-- Items Container -->
+        <div class="cart-table" id="cart-items-container">
+          <!-- Rendered by JS -->
+          <div style="text-align:center;padding:60px 20px;">
+            <div style="font-size:3rem;margin-bottom:16px;">🛍️</div>
+            <h4 style="font-family:var(--font-heading);">Votre panier est vide</h4>
+            <p style="font-size:0.85rem;color:var(--text-muted);margin-top:8px;">Découvrez nos produits et ajoutez vos favoris</p>
+            <a href="products.html" class="btn btn-gold mt-4">Explorer la Collection</a>
+          </div>
+        </div>
+
+        <!-- Coupon -->
+        <div style="background:var(--bg-card);border:1px solid var(--border-light);border-radius:var(--radius-md);padding:20px 24px;margin-top:16px;" data-reveal>
+          <p style="font-size:0.72rem;letter-spacing:2px;text-transform:uppercase;font-weight:600;color:var(--text-muted);margin-bottom:12px;">Code promotionnel</p>
+          <div style="display:flex;">
+            <input type="text" class="promo-input" placeholder="Entrez votre code promo" id="promoCode">
+            <button class="btn btn-outline-dark promo-btn" onclick="applyPromo()">Appliquer</button>
+          </div>
+          <p style="font-size:0.72rem;color:var(--text-muted);margin-top:8px;"><i class="bi bi-tag me-1" style="color:var(--accent-color);"></i>Essayez <strong>WELCOME15</strong> pour -15% sur votre première commande</p>
+        </div>
+      </div>
+
+      <!-- SUMMARY -->
+      <div class="col-lg-4">
+        <div class="cart-summary-card" data-reveal="right">
+          <h4 style="font-family:var(--font-heading);font-size:1.4rem;margin-bottom:24px;">Résumé de commande</h4>
+
+          <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:20px;">
+            <div style="display:flex;justify-content:space-between;font-size:0.85rem;">
+              <span style="color:var(--text-muted);">Sous-total</span>
+              <span id="cart-subtotal" style="font-weight:600;">0,00 €</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;font-size:0.85rem;" id="promo-row" style="display:none!important;">
+              <span style="color:#22c55e;display:flex;align-items:center;gap:4px;"><i class="bi bi-tag-fill"></i> Code WELCOME15</span>
+              <span style="color:#22c55e;font-weight:600;" id="promo-amount">-0,00 €</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;font-size:0.85rem;">
+              <span style="color:var(--text-muted);">Livraison</span>
+              <span style="color:#22c55e;font-weight:600;" id="shipping-cost">Gratuite</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;font-size:0.85rem;">
+              <span style="color:var(--text-muted);">TVA (20%)</span>
+              <span id="tax-amount" style="font-weight:600;">0,00 €</span>
+            </div>
+          </div>
+
+          <div style="border-top:1px solid var(--border-light);padding-top:16px;display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;">
+            <span style="font-family:var(--font-heading);font-size:1.1rem;font-weight:700;">Total TTC</span>
+            <span style="font-family:var(--font-heading);font-size:1.5rem;font-weight:900;" id="cart-total">0,00 €</span>
+          </div>
+
+          <a href="#" class="btn btn-gold w-100" style="padding:16px;font-size:0.8rem;display:flex;align-items:center;justify-content:center;gap:8px;">
+            <i class="bi bi-lock-fill"></i> Passer la commande sécurisée
+          </a>
+
+          <div style="text-align:center;margin-top:16px;">
+            <p style="font-size:0.7rem;color:var(--text-muted);margin-bottom:12px;">Paiements acceptés</p>
+            <div style="display:flex;justify-content:center;gap:8px;flex-wrap:wrap;">
+              <img src="https://cdn.jsdelivr.net/npm/payment-icons@1.1.0/min/flat/visa.svg" class="payment-icon" alt="Visa">
+              <img src="https://cdn.jsdelivr.net/npm/payment-icons@1.1.0/min/flat/mastercard.svg" class="payment-icon" alt="Mastercard">
+              <img src="https://cdn.jsdelivr.net/npm/payment-icons@1.1.0/min/flat/paypal.svg" class="payment-icon" alt="Paypal">
+              <img src="https://cdn.jsdelivr.net/npm/payment-icons@1.1.0/min/flat/amex.svg" class="payment-icon" alt="Amex">
+            </div>
+          </div>
+
+          <!-- Security -->
+          <div style="margin-top:20px;padding:14px;background:var(--bg-light);border-radius:var(--radius-sm);text-align:center;">
+            <p style="font-size:0.72rem;color:var(--text-muted);display:flex;align-items:center;justify-content:center;gap:6px;margin:0;">
+              <i class="bi bi-shield-check" style="color:var(--accent-color);"></i>
+              Paiement 100% sécurisé · SSL 256-bit
+            </p>
+          </div>
+        </div>
+
+        <!-- Advantages -->
+        <div style="margin-top:16px;display:flex;flex-direction:column;gap:10px;" data-reveal>
+          <div style="display:flex;align-items:center;gap:12px;font-size:0.8rem;color:var(--text-secondary);">
+            <i class="bi bi-truck" style="color:var(--accent-color);font-size:1rem;width:20px;"></i>
+            Livraison offerte dès 80€ d'achat
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;font-size:0.8rem;color:var(--text-secondary);">
+            <i class="bi bi-arrow-return-left" style="color:var(--accent-color);font-size:1rem;width:20px;"></i>
+            Retours gratuits sous 30 jours
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;font-size:0.8rem;color:var(--text-secondary);">
+            <i class="bi bi-box-seam" style="color:var(--accent-color);font-size:1rem;width:20px;"></i>
+            Livraison en 2–4 jours ouvrés
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-bottom">
+      <span>© 2026 Mode & Co. Tous droits réservés.</span>
+      <a href="products.html" style="color:var(--accent-color);font-size:0.8rem;">Continuer mes achats →</a>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/main.js"></script>
+<script>
+  // Override renderCartPage to also update tax
+  const _origRender = window.renderCartPage;
+  // Promo
+  function applyPromo() {
+    const code = document.getElementById('promoCode').value.trim().toUpperCase();
+    const promoRow = document.getElementById('promo-row');
+    if (code === 'WELCOME15') {
+      const subtotalEl = document.getElementById('cart-subtotal');
+      const sub = parseFloat((subtotalEl?.textContent || '0').replace(',','.').replace('€','').trim()) || 0;
+      const disc = sub * 0.15;
+      document.getElementById('promo-row').style.display = 'flex';
+      document.getElementById('promo-amount').textContent = '-' + disc.toFixed(2).replace('.',',') + ' €';
+      const tax = (sub - disc) * 0.20;
+      document.getElementById('tax-amount').textContent = tax.toFixed(2).replace('.',',') + ' €';
+      document.getElementById('cart-total').textContent = ((sub - disc) * 1.20).toFixed(2).replace('.',',') + ' €';
+      // toast
+      const evt = new CustomEvent('toast', {detail:{msg:'Code WELCOME15 appliqué ! -15%',icon:'🎉'}});
+      document.dispatchEvent(evt);
+    } else {
+      alert('Code promo invalide.');
+    }
+  }
+  document.addEventListener('toast', e => {
+    // reuse showToast from main.js scope — trigger via DOM
+    let cont = document.querySelector('.toast-container-custom');
+    if (!cont) { cont = document.createElement('div'); cont.className='toast-container-custom'; document.body.appendChild(cont); }
+    const t = document.createElement('div');
+    t.className = 'toast-custom';
+    t.innerHTML = `<span class="toast-icon">${e.detail.icon}</span><span>${e.detail.msg}</span>`;
+    cont.appendChild(t);
+    setTimeout(()=>t.remove(),3000);
+  });
+</script>
+</body>
+</html>

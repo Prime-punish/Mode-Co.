@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CGV – Mode & Co.</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Montserrat:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;1,300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    .page-hero{background:#000;padding:80px 0 50px;position:relative;}
+    .page-hero::before{content:'';position:absolute;inset:0;background:rgba(0,0,0,0.85);}
+    .page-hero .container{position:relative;z-index:2;}
+    .legal-nav{position:sticky;top:90px;background:#fff;border:1px solid var(--border-light);border-radius:var(--radius-lg);padding:24px;}
+    .legal-nav-item{display:block;padding:8px 12px;border-radius:var(--radius-sm);color:var(--text-secondary);font-size:0.82rem;text-decoration:none;transition:all 0.2s;margin-bottom:4px;}
+    .legal-nav-item:hover{background:var(--accent-ghost);color:var(--accent-color);}
+    .legal-section{margin-bottom:48px;}
+    .legal-section h2{font-family:var(--font-heading);font-size:1.4rem;font-weight:700;margin-bottom:16px;padding-bottom:12px;border-bottom:2px solid var(--accent-color);}
+    .legal-section h3{font-size:1rem;font-weight:700;margin:20px 0 10px;color:var(--text-primary);}
+    .legal-section p,.legal-section li{color:var(--text-secondary);line-height:1.9;font-size:0.9rem;}
+    .legal-section ul{padding-left:20px;}
+    .legal-section li{margin-bottom:6px;}
+    .last-updated{background:var(--bg-light);border-left:4px solid var(--accent-color);padding:12px 20px;border-radius:0 var(--radius-sm) var(--radius-sm) 0;font-size:0.8rem;color:var(--text-secondary);margin-bottom:40px;}
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<header class="navbar navbar-expand-lg sticky-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">MODE <span>& Co.</span></a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link" href="index.html">Accueil</a></li>
+        <li class="nav-item"><a class="nav-link" href="products.html">Vêtements</a></li>
+        <li class="nav-item"><a class="nav-link" href="products.html?cat=chaussures">Chaussures</a></li>
+        <li class="nav-item"><a class="nav-link" href="products.html?cat=accessoires">Accessoires</a></li>
+        <li class="nav-item"><a class="nav-link" href="a-propos.html">À propos</a></li>
+      </ul>
+    </div>
+    <div class="d-flex align-items-center gap-2">
+      <a href="products.html" class="cart-icon-wrapper text-dark"><i class="bi bi-search fs-5"></i></a>
+      <a href="compte.html" class="cart-icon-wrapper text-dark"><i class="bi bi-person fs-5"></i></a>
+      <a href="card.html" class="cart-icon-wrapper text-dark position-relative">
+        <i class="bi bi-bag fs-5"></i>
+        <span class="cart-badge badge rounded-pill bg-warning text-dark">0</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<div class="page-hero">
+  <div class="container">
+    <span style="font-size:0.65rem;font-weight:600;letter-spacing:4px;text-transform:uppercase;color:var(--accent-color);display:block;margin-bottom:12px;">Informations légales</span>
+    <h1 style="font-family:var(--font-heading);font-size:clamp(2rem,4vw,3.5rem);font-weight:900;color:#fff;">Conditions Générales <span style="color:var(--accent-color);font-style:italic;">de Vente</span></h1>
+  </div>
+</div>
+
+<section class="section-padding" style="background:var(--bg-light);">
+  <div class="container">
+    <div class="row g-5">
+      <!-- Sidebar Nav -->
+      <div class="col-lg-3 d-none d-lg-block">
+        <div class="legal-nav">
+          <div style="font-size:0.65rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);margin-bottom:12px;">Sommaire</div>
+          <a class="legal-nav-item" href="#art1">1. Objet</a>
+          <a class="legal-nav-item" href="#art2">2. Identification du vendeur</a>
+          <a class="legal-nav-item" href="#art3">3. Commande</a>
+          <a class="legal-nav-item" href="#art4">4. Prix</a>
+          <a class="legal-nav-item" href="#art5">5. Paiement</a>
+          <a class="legal-nav-item" href="#art6">6. Livraison</a>
+          <a class="legal-nav-item" href="#art7">7. Droit de rétractation</a>
+          <a class="legal-nav-item" href="#art8">8. Garanties</a>
+          <a class="legal-nav-item" href="#art9">9. Responsabilité</a>
+          <a class="legal-nav-item" href="#art10">10. Litiges</a>
+        </div>
+      </div>
+
+      <!-- Content -->
+      <div class="col-lg-9">
+        <div class="last-updated"><i class="bi bi-calendar3 me-2"></i>Dernière mise à jour : 1er janvier 2026</div>
+
+        <div class="legal-section" id="art1">
+          <h2>Article 1 – Objet</h2>
+          <p>Les présentes Conditions Générales de Vente (CGV) régissent les relations contractuelles entre la société Mode & Co. SAS et tout client souhaitant effectuer un achat sur le site internet <strong>www.modeco.fr</strong>. Toute commande implique l'acceptation pleine et entière des présentes CGV.</p>
+        </div>
+
+        <div class="legal-section" id="art2">
+          <h2>Article 2 – Identification du vendeur</h2>
+          <p><strong>Mode & Co. SAS</strong><br>
+          Capital social : 50 000 €<br>
+          Siège social : 12 Rue des Francs Bourgeois, 75003 Paris<br>
+          SIRET : 123 456 789 00010<br>
+          TVA intracommunautaire : FR 12 123456789<br>
+          Email : <a href="mailto:contact@modeco.fr" style="color:var(--accent-color);">contact@modeco.fr</a><br>
+          Téléphone : +33 1 23 45 67 89</p>
+        </div>
+
+        <div class="legal-section" id="art3">
+          <h2>Article 3 – Commande</h2>
+          <p>La passation de commande s'effectue exclusivement en ligne via le site www.modeco.fr. Le processus de commande comprend les étapes suivantes :</p>
+          <ul>
+            <li>Sélection des articles et ajout au panier</li>
+            <li>Vérification du contenu du panier</li>
+            <li>Identification ou création d'un compte client</li>
+            <li>Saisie de l'adresse de livraison</li>
+            <li>Choix du mode de livraison</li>
+            <li>Validation et paiement</li>
+          </ul>
+          <p>Une confirmation de commande est envoyée par email dans les minutes suivant le paiement. Mode & Co. se réserve le droit d'annuler toute commande en cas de stock insuffisant ou de problème de paiement.</p>
+        </div>
+
+        <div class="legal-section" id="art4">
+          <h2>Article 4 – Prix</h2>
+          <p>Les prix affichés sur le site sont en euros TTC (Toutes Taxes Comprises) et incluent la TVA française applicable. Mode & Co. se réserve le droit de modifier ses prix à tout moment. Les frais de livraison s'ajoutent au prix des articles selon le mode de livraison choisi.</p>
+        </div>
+
+        <div class="legal-section" id="art5">
+          <h2>Article 5 – Paiement</h2>
+          <p>Les paiements sont acceptés par carte bancaire (Visa, Mastercard, American Express), PayPal et virement bancaire. Toutes les transactions sont sécurisées par chiffrement SSL. Les données bancaires ne sont pas conservées par Mode & Co.</p>
+        </div>
+
+        <div class="legal-section" id="art6">
+          <h2>Article 6 – Livraison</h2>
+          <p>Les délais et tarifs de livraison sont précisés lors de la commande et sur la page <a href="livraison.html" style="color:var(--accent-color);">Livraison</a>. Mode & Co. ne peut être tenu responsable des retards imputables au transporteur ou à des événements de force majeure.</p>
+        </div>
+
+        <div class="legal-section" id="art7">
+          <h2>Article 7 – Droit de rétractation</h2>
+          <p>Conformément à l'article L221-18 du Code de la consommation, le client dispose d'un délai de <strong>30 jours</strong> à compter de la réception de sa commande pour exercer son droit de rétractation, sans avoir à justifier de motifs ni à payer de pénalités. Les frais de retour sont pris en charge par Mode & Co.</p>
+          <p>Pour exercer ce droit, le client doit initier sa demande via la page <a href="retours.html" style="color:var(--accent-color);">Retours & Échanges</a> ou contacter notre service client. Le remboursement est effectué dans un délai de 14 jours après réception des articles retournés.</p>
+        </div>
+
+        <div class="legal-section" id="art8">
+          <h2>Article 8 – Garanties</h2>
+          <p>Tous les produits vendus par Mode & Co. bénéficient de la garantie légale de conformité (articles L217-4 et suivants du Code de la consommation) et de la garantie des vices cachés (articles 1641 et suivants du Code civil).</p>
+        </div>
+
+        <div class="legal-section" id="art9">
+          <h2>Article 9 – Responsabilité</h2>
+          <p>Mode & Co. ne pourra être tenu responsable des dommages de toute nature pouvant résulter d'une mauvaise utilisation des produits vendus. La responsabilité de Mode & Co. est limitée au montant de la commande concernée.</p>
+        </div>
+
+        <div class="legal-section" id="art10">
+          <h2>Article 10 – Litiges</h2>
+          <p>En cas de litige, une solution amiable sera recherchée en priorité via notre service client. En cas d'échec, le client peut recourir à la médiation de la consommation via la plateforme européenne de règlement en ligne des litiges (<a href="https://ec.europa.eu/consumers/odr" target="_blank" style="color:var(--accent-color);">ec.europa.eu/consumers/odr</a>). Les tribunaux de Paris sont compétents pour tout litige.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="row g-5">
+      <div class="col-lg-4">
+        <div class="footer-brand">MODE <span>& Co.</span></div>
+        <p class="footer-desc">Votre destination mode pour des vêtements, chaussures et accessoires soigneusement sélectionnés.</p>
+      </div>
+      <div class="col-6 col-lg-2">
+        <p class="footer-heading">Informations</p>
+        <ul class="footer-links">
+          <li><a href="a-propos.html">À propos</a></li>
+          <li><a href="cgv.html">CGV</a></li>
+          <li><a href="confidentialite.html">Confidentialité</a></li>
+          <li><a href="cookies.html">Cookies</a></li>
+        </ul>
+      </div>
+      <div class="col-6 col-lg-2">
+        <p class="footer-heading">Service</p>
+        <ul class="footer-links">
+          <li><a href="livraison.html">Livraison</a></li>
+          <li><a href="retours.html">Retours</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <hr class="footer-divider">
+    <div class="footer-bottom"><span>© 2026 Mode & Co. Tous droits réservés.</span></div>
+  </div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>

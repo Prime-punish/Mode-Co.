@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>À propos – Mode & Co.</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Montserrat:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;1,300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    .page-hero{background:#000;padding:100px 0 70px;position:relative;overflow:hidden;}
+    .page-hero::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,0,0,0.85),rgba(212,175,55,0.12));}
+    .page-hero .container{position:relative;z-index:2;}
+    .page-hero-eyebrow{font-size:0.65rem;font-weight:600;letter-spacing:4px;text-transform:uppercase;color:var(--accent-color);margin-bottom:16px;display:block;}
+    .page-hero-title{font-family:var(--font-heading);font-size:clamp(2.5rem,6vw,5rem);font-weight:900;color:#fff;line-height:1.1;}
+    .page-hero-title .italic{color:var(--accent-color);font-style:italic;}
+    .stat-card{text-align:center;padding:40px 24px;background:var(--bg-card);border:1px solid var(--border-light);border-radius:var(--radius-lg);transition:all 0.3s;}
+    .stat-card:hover{border-color:var(--border-gold);transform:translateY(-4px);box-shadow:var(--shadow-gold);}
+    .stat-number{font-family:var(--font-heading);font-size:3rem;font-weight:900;color:var(--accent-color);}
+    .stat-label{font-size:0.75rem;letter-spacing:2px;text-transform:uppercase;color:var(--text-secondary);margin-top:8px;}
+    .team-card{border:1px solid var(--border-light);border-radius:var(--radius-lg);overflow:hidden;transition:all 0.3s;}
+    .team-card:hover{border-color:var(--border-gold);box-shadow:var(--shadow-gold);}
+    .team-photo{height:280px;object-fit:cover;width:100%;background:var(--bg-light);}
+    .team-info{padding:24px;}
+    .team-name{font-family:var(--font-heading);font-size:1.25rem;font-weight:700;}
+    .team-role{font-size:0.7rem;letter-spacing:2px;text-transform:uppercase;color:var(--accent-color);}
+    .value-icon{width:60px;height:60px;background:linear-gradient(135deg,var(--accent-color),var(--accent-dark));border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.5rem;color:#000;margin-bottom:20px;}
+    .timeline-item{position:relative;padding-left:48px;margin-bottom:48px;}
+    .timeline-item::before{content:'';position:absolute;left:16px;top:24px;bottom:-24px;width:1px;background:var(--border-gold);}
+    .timeline-item:last-child::before{display:none;}
+    .timeline-dot{position:absolute;left:0;top:4px;width:32px;height:32px;background:linear-gradient(135deg,var(--accent-color),var(--accent-dark));border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.7rem;font-weight:700;color:#000;}
+    .timeline-year{font-size:0.65rem;letter-spacing:3px;text-transform:uppercase;color:var(--accent-color);font-weight:600;}
+    .timeline-title{font-family:var(--font-heading);font-size:1.1rem;font-weight:700;margin:4px 0;}
+    .timeline-desc{color:var(--text-secondary);font-size:0.9rem;}
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<header class="navbar navbar-expand-lg sticky-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">MODE <span>& Co.</span></a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link" href="index.html">Accueil</a></li>
+        <li class="nav-item"><a class="nav-link" href="products.html">Vêtements</a></li>
+        <li class="nav-item"><a class="nav-link" href="products.html?cat=chaussures">Chaussures</a></li>
+        <li class="nav-item"><a class="nav-link" href="products.html?cat=accessoires">Accessoires</a></li>
+        <li class="nav-item"><a class="nav-link active" href="a-propos.html">À propos</a></li>
+      </ul>
+    </div>
+    <div class="d-flex align-items-center gap-2">
+      <a href="products.html" class="cart-icon-wrapper text-dark"><i class="bi bi-search fs-5"></i></a>
+      <a href="compte.html" class="cart-icon-wrapper text-dark"><i class="bi bi-person fs-5"></i></a>
+      <a href="card.html" class="cart-icon-wrapper text-dark position-relative">
+        <i class="bi bi-bag fs-5"></i>
+        <span class="cart-badge badge rounded-pill bg-warning text-dark">0</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<div class="page-hero">
+  <div class="container">
+    <span class="page-hero-eyebrow">Notre Histoire</span>
+    <h1 class="page-hero-title">La mode, <span class="italic">réinventée</span><br>avec passion</h1>
+    <p class="mt-4" style="color:rgba(255,255,255,0.65);font-family:var(--font-italic);font-size:1.1rem;max-width:560px;">Depuis 2015, Mode & Co. sélectionne avec soin les pièces qui définissent le style de demain, entre élégance parisienne et tendances mondiales.</p>
+  </div>
+</div>
+
+<!-- STATS -->
+<section class="section-padding" style="background:var(--bg-light);">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-6 col-lg-3"><div class="stat-card"><div class="stat-number">+45K</div><div class="stat-label">Clients fidèles</div></div></div>
+      <div class="col-6 col-lg-3"><div class="stat-card"><div class="stat-number">850+</div><div class="stat-label">Références</div></div></div>
+      <div class="col-6 col-lg-3"><div class="stat-card"><div class="stat-number">11</div><div class="stat-label">Années d'expertise</div></div></div>
+      <div class="col-6 col-lg-3"><div class="stat-card"><div class="stat-number">4.9★</div><div class="stat-label">Note moyenne</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- STORY -->
+<section class="section-padding">
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6">
+        <span class="section-eyebrow">Notre ADN</span>
+        <h2 class="section-title">Plus qu'une boutique,<br><span class="italic">un art de vivre</span></h2>
+        <p style="color:var(--text-secondary);line-height:1.9;margin-bottom:24px;">Mode & Co. est née d'une passion profonde pour la mode et d'une conviction : chaque personne mérite d'accéder à des vêtements beaux, durables et accessibles. Fondée à Paris par Sophie et Marc Durand, notre maison s'est construite sur la curation rigoureuse de pièces intemporelles.</p>
+        <p style="color:var(--text-secondary);line-height:1.9;margin-bottom:32px;">Nous travaillons directement avec des créateurs émergents et des maisons établies pour vous proposer une sélection cohérente, pensée pour la vie réelle – du bureau au week-end, de la ville à la campagne.</p>
+        <a href="products.html" class="btn btn-gold px-4 py-3">Découvrir la collection</a>
+      </div>
+      <div class="col-lg-6">
+        <div style="position:relative;">
+          <img src="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=700&q=80" alt="Notre boutique" style="width:100%;border-radius:var(--radius-lg);object-fit:cover;height:480px;">
+          <div style="position:absolute;bottom:-24px;right:-24px;background:#fff;padding:28px;border-radius:var(--radius-md);box-shadow:var(--shadow-lg);border:1px solid var(--border-gold);max-width:220px;">
+            <div style="font-family:var(--font-heading);font-size:1.8rem;font-weight:900;color:var(--accent-color);">2015</div>
+            <div style="font-size:0.75rem;letter-spacing:2px;text-transform:uppercase;color:var(--text-secondary);">Fondée à Paris</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VALEURS -->
+<section class="section-padding" style="background:var(--bg-light);">
+  <div class="container">
+    <div class="section-header" data-reveal>
+      <span class="section-eyebrow">Ce qui nous guide</span>
+      <h2 class="section-title">Nos <span class="italic">Valeurs</span></h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="p-4 bg-white rounded-4 border h-100" style="border-color:var(--border-light)!important;">
+          <div class="value-icon"><i class="bi bi-gem"></i></div>
+          <h4 style="font-family:var(--font-heading);font-size:1.3rem;font-weight:700;margin-bottom:12px;">Qualité</h4>
+          <p style="color:var(--text-secondary);line-height:1.8;">Chaque pièce est inspectée et sélectionnée selon des critères exigeants : matières, finitions, coupe et durabilité. Nous refusons le compromis sur la qualité.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="p-4 bg-white rounded-4 border h-100" style="border-color:var(--border-light)!important;">
+          <div class="value-icon"><i class="bi bi-leaf"></i></div>
+          <h4 style="font-family:var(--font-heading);font-size:1.3rem;font-weight:700;margin-bottom:12px;">Responsabilité</h4>
+          <p style="color:var(--text-secondary);line-height:1.8;">Nous privilégions les marques engagées dans une démarche éco-responsable : matières recyclées, circuits courts, et emballages biodégradables.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="p-4 bg-white rounded-4 border h-100" style="border-color:var(--border-light)!important;">
+          <div class="value-icon"><i class="bi bi-people"></i></div>
+          <h4 style="font-family:var(--font-heading);font-size:1.3rem;font-weight:700;margin-bottom:12px;">Inclusivité</h4>
+          <p style="color:var(--text-secondary);line-height:1.8;">La mode est pour tous. Nos collections couvrent du XS au 3XL et nous nous engageons à représenter la diversité dans toutes nos communications.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section class="section-padding">
+  <div class="container">
+    <div class="row g-5 align-items-start">
+      <div class="col-lg-5">
+        <span class="section-eyebrow">Notre parcours</span>
+        <h2 class="section-title">Une <span class="italic">aventure</span><br>en constante évolution</h2>
+        <p style="color:var(--text-secondary);line-height:1.9;">De nos premiers pas dans une petite boutique du Marais à une plateforme e-commerce reconnue dans toute l'Europe, notre histoire est celle d'une passion qui ne s'arrête jamais.</p>
+      </div>
+      <div class="col-lg-7">
+        <div class="timeline-item">
+          <div class="timeline-dot">15</div>
+          <div class="timeline-year">2015</div>
+          <div class="timeline-title">Ouverture de la boutique Marais</div>
+          <div class="timeline-desc">Sophie et Marc ouvrent leur première boutique de 40m² dans le 3ème arrondissement de Paris, avec une sélection de 50 pièces triées sur le volet.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot">18</div>
+          <div class="timeline-year">2018</div>
+          <div class="timeline-title">Lancement de la boutique en ligne</div>
+          <div class="timeline-desc">Mode & Co. franchit le cap du digital et rejoint ses premiers 5 000 clients en ligne, avec la livraison en France métropolitaine.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot">21</div>
+          <div class="timeline-year">2021</div>
+          <div class="timeline-title">Expansion européenne</div>
+          <div class="timeline-desc">Livraison étendue à 12 pays européens. Lancement de la ligne Sustainable Collection, 100% éco-responsable.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot">26</div>
+          <div class="timeline-year">2026</div>
+          <div class="timeline-title">45 000 clients & récompenses</div>
+          <div class="timeline-desc">Mode & Co. fête ses 45 000 clients fidèles et reçoit le Prix de l'Excellence Mode de la Fédération française du prêt-à-porter.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section class="section-padding" style="background:var(--bg-light);">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-eyebrow">Les visages</span>
+      <h2 class="section-title">Notre <span class="italic">Équipe</span></h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="row g-4">
+      <div class="col-sm-6 col-lg-3">
+        <div class="team-card bg-white">
+          <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=400&q=80" alt="Sophie Durand" class="team-photo">
+          <div class="team-info">
+            <div class="team-name">Sophie Durand</div>
+            <div class="team-role mt-1">Co-fondatrice & Directrice</div>
+            <p style="color:var(--text-secondary);font-size:0.85rem;margin-top:12px;line-height:1.7;">10 ans dans la mode, ancienne styliste pour des maisons parisiennes.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3">
+        <div class="team-card bg-white">
+          <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&q=80" alt="Marc Durand" class="team-photo">
+          <div class="team-info">
+            <div class="team-name">Marc Durand</div>
+            <div class="team-role mt-1">Co-fondateur & DAF</div>
+            <p style="color:var(--text-secondary);font-size:0.85rem;margin-top:12px;line-height:1.7;">Expert en développement commercial et stratégie retail.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3">
+        <div class="team-card bg-white">
+          <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=80" alt="Léa Martin" class="team-photo">
+          <div class="team-info">
+            <div class="team-name">Léa Martin</div>
+            <div class="team-role mt-1">Directrice Artistique</div>
+            <p style="color:var(--text-secondary);font-size:0.85rem;margin-top:12px;line-height:1.7;">Photographe et styliste, elle orchestre l'identité visuelle de la marque.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3">
+        <div class="team-card bg-white">
+          <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&q=80" alt="Jules Moreau" class="team-photo">
+          <div class="team-info">
+            <div class="team-name">Jules Moreau</div>
+            <div class="team-role mt-1">Responsable Curation</div>
+            <p style="color:var(--text-secondary);font-size:0.85rem;margin-top:12px;line-height:1.7;">Voyageur passionné, il déniche les meilleures pièces aux quatre coins du monde.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="newsletter-section" style="padding:80px 0;">
+  <div class="container text-center" style="position:relative;z-index:2;">
+    <span class="section-eyebrow" style="color:var(--accent-color);">Rejoignez l'aventure</span>
+    <h2 style="font-family:var(--font-heading);font-size:clamp(2rem,4vw,3rem);font-weight:900;color:#fff;margin-bottom:16px;">Envie de nous <span style="color:var(--accent-color);font-style:italic;">rejoindre</span> ?</h2>
+    <p style="color:rgba(255,255,255,0.7);margin-bottom:32px;font-family:var(--font-italic);font-size:1.1rem;">Nous recrutons régulièrement des talents passionnés par la mode.</p>
+    <a href="contact.html" class="btn btn-gold px-5 py-3">Nous contacter</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="row g-5">
+      <div class="col-lg-4">
+        <div class="footer-brand">MODE <span>& Co.</span></div>
+        <p class="footer-desc">Votre destination mode pour des vêtements, chaussures et accessoires soigneusement sélectionnés pour un style qui vous ressemble.</p>
+        <div class="social-links mt-4">
+          <a href="#" class="social-link"><i class="bi bi-instagram"></i></a>
+          <a href="#" class="social-link"><i class="bi bi-facebook"></i></a>
+          <a href="#" class="social-link"><i class="bi bi-tiktok"></i></a>
+          <a href="#" class="social-link"><i class="bi bi-pinterest"></i></a>
+        </div>
+      </div>
+      <div class="col-6 col-lg-2">
+        <p class="footer-heading">Collections</p>
+        <ul class="footer-links">
+          <li><a href="products.html?cat=vetements">Femme</a></li>
+          <li><a href="products.html?cat=vetements">Homme</a></li>
+          <li><a href="products.html?cat=vetements">Enfant</a></li>
+          <li><a href="products.html?cat=accessoires">Accessoires</a></li>
+          <li><a href="products.html">Nouveautés</a></li>
+        </ul>
+      </div>
+      <div class="col-6 col-lg-2">
+        <p class="footer-heading">Service</p>
+        <ul class="footer-links">
+          <li><a href="compte.html">Mon Compte</a></li>
+          <li><a href="commandes.html">Mes Commandes</a></li>
+          <li><a href="livraison.html">Livraison</a></li>
+          <li><a href="retours.html">Retours</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="col-6 col-lg-2">
+        <p class="footer-heading">Informations</p>
+        <ul class="footer-links">
+          <li><a href="a-propos.html">À propos</a></li>
+          <li><a href="cgv.html">CGV</a></li>
+          <li><a href="confidentialite.html">Confidentialité</a></li>
+          <li><a href="cookies.html">Cookies</a></li>
+        </ul>
+      </div>
+      <div class="col-6 col-lg-2">
+        <p class="footer-heading">Contact</p>
+        <ul class="footer-links">
+          <li><a href="mailto:contact@modeco.fr">contact@modeco.fr</a></li>
+          <li><a href="tel:+33123456789">+33 1 23 45 67 89</a></li>
+          <li>Lun–Ven 9h–18h</li>
+        </ul>
+      </div>
+    </div>
+    <hr class="footer-divider">
+    <div class="footer-bottom">
+      <span>© 2026 Mode & Co. Tous droits réservés.</span>
+      <span>Fait avec ❤️ à Paris</span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>

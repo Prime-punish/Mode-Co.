@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Retours & Échanges – Mode & Co.</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Montserrat:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;1,300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    .page-hero{background:#000;padding:90px 0 60px;position:relative;}
+    .page-hero::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,0,0,0.88),rgba(212,175,55,0.1));}
+    .page-hero .container{position:relative;z-index:2;}
+    .return-step{display:flex;gap:20px;margin-bottom:32px;align-items:flex-start;}
+    .return-step-num{width:48px;height:48px;background:linear-gradient(135deg,var(--accent-color),var(--accent-dark));border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:1.1rem;color:#000;flex-shrink:0;}
+    .condition-card{border:1px solid var(--border-light);border-radius:var(--radius-md);padding:20px;display:flex;gap:12px;align-items:flex-start;}
+    .condition-card.ok{border-color:rgba(34,197,94,0.3);background:rgba(34,197,94,0.04);}
+    .condition-card.no{border-color:rgba(239,68,68,0.3);background:rgba(239,68,68,0.04);}
+    .info-highlight{background:linear-gradient(135deg,rgba(212,175,55,0.08),rgba(212,175,55,0.03));border:1.5px solid var(--border-gold);border-radius:var(--radius-md);padding:24px 28px;}
+    .return-form-wrap{background:#fff;border:1px solid var(--border-light);border-radius:var(--radius-xl);padding:40px;}
+    .form-label{font-size:0.7rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--text-secondary);margin-bottom:6px;}
+    .form-control,.form-select{border:1.5px solid var(--border-light);border-radius:var(--radius-sm);padding:12px 16px;font-size:0.9rem;background:var(--bg-light);}
+    .form-control:focus,.form-select:focus{border-color:var(--accent-color);box-shadow:0 0 0 3px var(--accent-glow);background:#fff;}
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<header class="navbar navbar-expand-lg sticky-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">MODE <span>& Co.</span></a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link" href="index.html">Accueil</a></li>
+        <li class="nav-item"><a class="nav-link" href="products.html">Vêtements</a></li>
+        <li class="nav-item"><a class="nav-link" href="products.html?cat=chaussures">Chaussures</a></li>
+        <li class="nav-item"><a class="nav-link" href="products.html?cat=accessoires">Accessoires</a></li>
+        <li class="nav-item"><a class="nav-link" href="a-propos.html">À propos</a></li>
+      </ul>
+    </div>
+    <div class="d-flex align-items-center gap-2">
+      <a href="products.html" class="cart-icon-wrapper text-dark"><i class="bi bi-search fs-5"></i></a>
+      <a href="compte.html" class="cart-icon-wrapper text-dark"><i class="bi bi-person fs-5"></i></a>
+      <a href="card.html" class="cart-icon-wrapper text-dark position-relative">
+        <i class="bi bi-bag fs-5"></i>
+        <span class="cart-badge badge rounded-pill bg-warning text-dark">0</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<div class="page-hero">
+  <div class="container">
+    <span style="font-size:0.65rem;font-weight:600;letter-spacing:4px;text-transform:uppercase;color:var(--accent-color);display:block;margin-bottom:16px;">Satisfait ou remboursé</span>
+    <h1 style="font-family:var(--font-heading);font-size:clamp(2.5rem,5vw,4.5rem);font-weight:900;color:#fff;">Retours & <span style="color:var(--accent-color);font-style:italic;">Échanges</span></h1>
+    <p style="color:rgba(255,255,255,0.65);font-family:var(--font-italic);font-size:1.1rem;margin-top:12px;">30 jours pour changer d'avis. Retours gratuits sur tous les articles.</p>
+  </div>
+</div>
+
+<section class="section-padding" style="background:var(--bg-light);">
+  <div class="container">
+
+    <div class="info-highlight mb-5 d-flex align-items-center gap-3">
+      <i class="bi bi-arrow-return-left" style="font-size:2rem;color:var(--accent-color);flex-shrink:0;"></i>
+      <div>
+        <div style="font-weight:700;font-size:1rem;">Retours gratuits sous 30 jours</div>
+        <div style="color:var(--text-secondary);font-size:0.85rem;margin-top:4px;">Retournez n'importe quel article gratuitement dans les 30 jours suivant la réception. Remboursement sous 5 jours ouvrés.</div>
+      </div>
+    </div>
+
+    <div class="row g-5 mb-5">
+      <div class="col-lg-6">
+        <h2 style="font-family:var(--font-heading);font-size:1.8rem;font-weight:700;margin-bottom:24px;">Procédure de <span style="color:var(--accent-color);font-style:italic;">retour</span></h2>
+        <div class="return-step">
+          <div class="return-step-num">1</div>
+          <div>
+            <div style="font-weight:700;margin-bottom:6px;">Remplissez le formulaire en ligne</div>
+            <div style="color:var(--text-secondary);font-size:0.9rem;line-height:1.7;">Indiquez votre numéro de commande et le(s) article(s) à retourner ci-dessous. Vous recevrez un email de confirmation avec votre étiquette de retour.</div>
+          </div>
+        </div>
+        <div class="return-step">
+          <div class="return-step-num">2</div>
+          <div>
+            <div style="font-weight:700;margin-bottom:6px;">Préparez votre colis</div>
+            <div style="color:var(--text-secondary);font-size:0.9rem;line-height:1.7;">Replacez l'article dans son emballage d'origine avec toutes les étiquettes. Collez l'étiquette de retour sur le colis.</div>
+          </div>
+        </div>
+        <div class="return-step">
+          <div class="return-step-num">3</div>
+          <div>
+            <div style="font-weight:700;margin-bottom:6px;">Déposez votre colis</div>
+            <div style="color:var(--text-secondary);font-size:0.9rem;line-height:1.7;">Déposez votre colis dans n'importe quel bureau de La Poste ou point relais Mondial Relay. La livraison est prise en charge.</div>
+          </div>
+        </div>
+        <div class="return-step">
+          <div class="return-step-num">4</div>
+          <div>
+            <div style="font-weight:700;margin-bottom:6px;">Remboursement ou échange</div>
+            <div style="color:var(--text-secondary);font-size:0.9rem;line-height:1.7;">Dès réception, votre remboursement est effectué sous 5 jours ouvrés sur votre moyen de paiement d'origine. Pour un échange, votre nouveau colis est expédié immédiatement.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <h2 style="font-family:var(--font-heading);font-size:1.8rem;font-weight:700;margin-bottom:24px;">Conditions <span style="color:var(--accent-color);font-style:italic;">acceptées</span></h2>
+        <div class="row g-3">
+          <div class="col-12">
+            <div class="condition-card ok">
+              <i class="bi bi-check-circle-fill" style="color:#16a34a;font-size:1.2rem;flex-shrink:0;margin-top:2px;"></i>
+              <div style="font-size:0.9rem;line-height:1.7;"><strong>Article non porté</strong> avec toutes ses étiquettes d'origine</div>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="condition-card ok">
+              <i class="bi bi-check-circle-fill" style="color:#16a34a;font-size:1.2rem;flex-shrink:0;margin-top:2px;"></i>
+              <div style="font-size:0.9rem;line-height:1.7;"><strong>Dans les 30 jours</strong> suivant la date de réception</div>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="condition-card ok">
+              <i class="bi bi-check-circle-fill" style="color:#16a34a;font-size:1.2rem;flex-shrink:0;margin-top:2px;"></i>
+              <div style="font-size:0.9rem;line-height:1.7;"><strong>Article défectueux ou non conforme</strong> à la description</div>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="condition-card no">
+              <i class="bi bi-x-circle-fill" style="color:#dc2626;font-size:1.2rem;flex-shrink:0;margin-top:2px;"></i>
+              <div style="font-size:0.9rem;line-height:1.7;"><strong>Article porté, lavé ou modifié</strong></div>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="condition-card no">
+              <i class="bi bi-x-circle-fill" style="color:#dc2626;font-size:1.2rem;flex-shrink:0;margin-top:2px;"></i>
+              <div style="font-size:0.9rem;line-height:1.7;"><strong>Maillots de bain et sous-vêtements</strong> pour raisons d'hygiène</div>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="condition-card no">
+              <i class="bi bi-x-circle-fill" style="color:#dc2626;font-size:1.2rem;flex-shrink:0;margin-top:2px;"></i>
+              <div style="font-size:0.9rem;line-height:1.7;"><strong>Articles soldés ou en promotion flash</strong> (mention précisée à la commande)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Return Form -->
+    <div class="return-form-wrap">
+      <h3 style="font-family:var(--font-heading);font-size:1.6rem;font-weight:700;margin-bottom:8px;">Initier un retour</h3>
+      <p style="color:var(--text-secondary);margin-bottom:28px;">Remplissez le formulaire ci-dessous pour obtenir votre étiquette de retour gratuite.</p>
+      <div class="row g-3">
+        <div class="col-sm-6">
+          <label class="form-label">Numéro de commande</label>
+          <input type="text" class="form-control" placeholder="#MC-2026-XXXX">
+        </div>
+        <div class="col-sm-6">
+          <label class="form-label">Email de commande</label>
+          <input type="email" class="form-control" placeholder="votre@email.com">
+        </div>
+        <div class="col-sm-6">
+          <label class="form-label">Article à retourner</label>
+          <input type="text" class="form-control" placeholder="Nom du produit">
+        </div>
+        <div class="col-sm-6">
+          <label class="form-label">Motif de retour</label>
+          <select class="form-select">
+            <option>Sélectionner...</option>
+            <option>Taille incorrecte</option>
+            <option>Ne correspond pas à la description</option>
+            <option>Article défectueux</option>
+            <option>Changement d'avis</option>
+            <option>Autre</option>
+          </select>
+        </div>
+        <div class="col-sm-6">
+          <label class="form-label">Je souhaite</label>
+          <select class="form-select">
+            <option>Être remboursé(e)</option>
+            <option>Un échange (même article, taille différente)</option>
+            <option>Un avoir</option>
+          </select>
+        </div>
+        <div class="col-12">
+          <label class="form-label">Informations complémentaires</label>
+          <textarea class="form-control" rows="3" placeholder="Décrivez le problème si nécessaire..."></textarea>
+        </div>
+        <div class="col-12 mt-2">
+          <button class="btn btn-gold px-5 py-3"><i class="bi bi-arrow-return-left me-2"></i>Générer mon étiquette de retour</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="row g-5">
+      <div class="col-lg-4">
+        <div class="footer-brand">MODE <span>& Co.</span></div>
+        <p class="footer-desc">Votre destination mode pour des vêtements, chaussures et accessoires soigneusement sélectionnés.</p>
+      </div>
+      <div class="col-6 col-lg-2">
+        <p class="footer-heading">Service</p>
+        <ul class="footer-links">
+          <li><a href="compte.html">Mon Compte</a></li>
+          <li><a href="commandes.html">Mes Commandes</a></li>
+          <li><a href="livraison.html">Livraison</a></li>
+          <li><a href="retours.html">Retours</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="col-6 col-lg-2">
+        <p class="footer-heading">Informations</p>
+        <ul class="footer-links">
+          <li><a href="a-propos.html">À propos</a></li>
+          <li><a href="cgv.html">CGV</a></li>
+          <li><a href="confidentialite.html">Confidentialité</a></li>
+          <li><a href="cookies.html">Cookies</a></li>
+        </ul>
+      </div>
+    </div>
+    <hr class="footer-divider">
+    <div class="footer-bottom"><span>© 2026 Mode & Co. Tous droits réservés.</span></div>
+  </div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>

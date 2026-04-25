@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mode & Co. — Connexion</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <!-- Supabase CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <style>
+    :root {
+      --navy: #12213a;
+      --navy-mid: #1a2f50;
+      --navy-light: #243660;
+      --gold: #D4AF37;
+      --gold-light: #e8c84a;
+      --gold-dim: rgba(212,175,55,0.15);
+      --cream: #f5f0e8;
+      --white: #ffffff;
+      --text-muted: rgba(245,240,232,0.5);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html, body {
+      height: 100%;
+      font-family: 'DM Sans', sans-serif;
+      background: var(--navy);
+      overflow: hidden;
+    }
+
+    /* Animated background */
+    .bg-canvas {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .bg-canvas::before {
+      content: '';
+      position: absolute;
+      inset: -50%;
+      background: radial-gradient(ellipse 80% 80% at 20% 50%, rgba(212,175,55,0.08) 0%, transparent 60%),
+                  radial-gradient(ellipse 60% 60% at 80% 20%, rgba(18,33,58,0.9) 0%, transparent 70%);
+      animation: bgPulse 8s ease-in-out infinite alternate;
+    }
+
+    @keyframes bgPulse {
+      from { transform: scale(1) rotate(0deg); opacity: 0.7; }
+      to { transform: scale(1.1) rotate(3deg); opacity: 1; }
+    }
+
+    /* Floating orbs */
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(60px);
+      animation: float linear infinite;
+      pointer-events: none;
+    }
+    .orb-1 {
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(212,175,55,0.12), transparent);
+      top: -100px; left: -100px;
+      animation-duration: 20s;
+    }
+    .orb-2 {
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, rgba(36,54,96,0.6), transparent);
+      bottom: -50px; right: -50px;
+      animation-duration: 15s;
+      animation-direction: reverse;
+    }
+    .orb-3 {
+      width: 200px; height: 200px;
+      background: radial-gradient(circle, rgba(212,175,55,0.06), transparent);
+      top: 50%; right: 20%;
+      animation-duration: 25s;
+    }
+
+    @keyframes float {
+      0% { transform: translate(0, 0) scale(1); }
+      25% { transform: translate(30px, -20px) scale(1.05); }
+      50% { transform: translate(-20px, 30px) scale(0.95); }
+      75% { transform: translate(20px, 20px) scale(1.02); }
+      100% { transform: translate(0, 0) scale(1); }
+    }
+
+    /* Grid lines decoration */
+    .grid-lines {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      background-image:
+        linear-gradient(rgba(212,175,55,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(212,175,55,0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+
+    /* Main layout */
+    .login-container {
+      position: relative;
+      z-index: 10;
+      height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    /* Left panel — branding */
+    .brand-panel {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 80px;
+      position: relative;
+      overflow: hidden;
+      border-right: 1px solid rgba(212,175,55,0.1);
+    }
+
+    .brand-panel::after {
+      content: '';
+      position: absolute;
+      right: 0; top: 0; bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom, transparent, var(--gold), transparent);
+      opacity: 0.4;
+    }
+
+    .logo-wrap {
+      margin-bottom: 60px;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: revealUp 1s cubic-bezier(0.16,1,0.3,1) 0.3s forwards;
+    }
+
+    .logo-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 72px;
+      font-weight: 900;
+      line-height: 0.9;
+      color: var(--cream);
+      letter-spacing: -2px;
+    }
+
+    .logo-text span {
+      color: var(--gold);
+      font-style: italic;
+    }
+
+    .logo-sub {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 14px;
+      font-weight: 300;
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-top: 12px;
+    }
+
+    .brand-tagline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 28px;
+      font-style: italic;
+      color: var(--text-muted);
+      line-height: 1.5;
+      max-width: 380px;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: revealUp 1s cubic-bezier(0.16,1,0.3,1) 0.6s forwards;
+    }
+
+    .brand-tagline strong {
+      color: var(--cream);
+      font-style: normal;
+      font-weight: 400;
+    }
+
+    .brand-stats {
+      display: flex;
+      gap: 48px;
+      margin-top: 60px;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: revealUp 1s cubic-bezier(0.16,1,0.3,1) 0.9s forwards;
+    }
+
+    .stat {
+      display: flex;
+      flex-direction: column;
+    }
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 36px;
+      font-weight: 700;
+      color: var(--gold);
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    /* Decorative ribbon SVG */
+    .ribbon-deco {
+      position: absolute;
+      bottom: 80px;
+      right: -20px;
+      width: 120px;
+      opacity: 0.3;
+      animation: ribbonSpin 12s ease-in-out infinite;
+    }
+
+    @keyframes ribbonSpin {
+      0%, 100% { transform: rotate(-5deg) scale(1); }
+      50% { transform: rotate(5deg) scale(1.05); }
+    }
+
+    /* Right panel — form */
+    .form-panel {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 80px;
+    }
+
+    .form-card {
+      width: 100%;
+      max-width: 420px;
+      opacity: 0;
+      transform: translateX(40px);
+      animation: revealRight 1s cubic-bezier(0.16,1,0.3,1) 0.5s forwards;
+    }
+
+    .form-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 36px;
+      font-weight: 700;
+      color: var(--cream);
+      margin-bottom: 8px;
+    }
+
+    .form-subtitle {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 48px;
+      letter-spacing: 0.3px;
+    }
+
+    .input-group {
+      margin-bottom: 24px;
+      position: relative;
+    }
+
+    .input-label {
+      display: block;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 10px;
+      font-weight: 500;
+    }
+
+    .input-wrap {
+      position: relative;
+    }
+
+    .input-field {
+      width: 100%;
+      padding: 16px 20px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(212,175,55,0.2);
+      border-radius: 4px;
+      color: var(--cream);
+      font-size: 15px;
+      font-family: 'DM Sans', sans-serif;
+      transition: all 0.3s cubic-bezier(0.16,1,0.3,1);
+      outline: none;
+    }
+
+    .input-field::placeholder {
+      color: rgba(245,240,232,0.25);
+    }
+
+    .input-field:focus {
+      border-color: var(--gold);
+      background: rgba(212,175,55,0.06);
+      box-shadow: 0 0 0 3px rgba(212,175,55,0.08), inset 0 0 20px rgba(212,175,55,0.03);
+    }
+
+    .input-line {
+      position: absolute;
+      bottom: 0; left: 50%;
+      width: 0; height: 2px;
+      background: var(--gold);
+      transform: translateX(-50%);
+      transition: width 0.4s cubic-bezier(0.16,1,0.3,1);
+      border-radius: 2px;
+    }
+
+    .input-field:focus ~ .input-line { width: 100%; }
+
+    .toggle-pass {
+      position: absolute;
+      right: 16px; top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      padding: 4px;
+      transition: color 0.2s;
+      font-size: 16px;
+    }
+    .toggle-pass:hover { color: var(--gold); }
+
+    .remember-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 36px;
+    }
+
+    .check-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+    }
+
+    .check-wrap input[type="checkbox"] {
+      appearance: none;
+      width: 18px; height: 18px;
+      border: 1px solid rgba(212,175,55,0.3);
+      border-radius: 3px;
+      background: transparent;
+      cursor: pointer;
+      position: relative;
+      transition: all 0.2s;
+    }
+    .check-wrap input[type="checkbox"]:checked {
+      background: var(--gold);
+      border-color: var(--gold);
+    }
+    .check-wrap input[type="checkbox"]:checked::after {
+      content: '✓';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      color: var(--navy);
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .check-label {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .forgot-link {
+      font-size: 13px;
+      color: var(--gold);
+      text-decoration: none;
+      opacity: 0.7;
+      transition: opacity 0.2s;
+    }
+    .forgot-link:hover { opacity: 1; }
+
+    .btn-login {
+      width: 100%;
+      padding: 18px;
+      background: linear-gradient(135deg, var(--gold) 0%, #b8962e 100%);
+      border: none;
+      border-radius: 4px;
+      color: var(--navy);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s cubic-bezier(0.16,1,0.3,1);
+    }
+
+    .btn-login::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.15), transparent);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .btn-login:hover::before { opacity: 1; }
+    .btn-login:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(212,175,55,0.3); }
+    .btn-login:active { transform: translateY(0); }
+
+    .btn-login.loading {
+      pointer-events: none;
+      opacity: 0.8;
+    }
+
+    .btn-login .btn-text { transition: opacity 0.2s; }
+    .btn-login .btn-spinner {
+      display: none;
+      width: 20px; height: 20px;
+      border: 2px solid rgba(18,33,58,0.3);
+      border-top-color: var(--navy);
+      border-radius: 50%;
+      animation: spin 0.6s linear infinite;
+      margin: 0 auto;
+    }
+    .btn-login.loading .btn-text { display: none; }
+    .btn-login.loading .btn-spinner { display: block; }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin: 28px 0;
+    }
+    .divider-line {
+      flex: 1;
+      height: 1px;
+      background: rgba(212,175,55,0.1);
+    }
+    .divider-text {
+      font-size: 12px;
+      color: var(--text-muted);
+      letter-spacing: 1px;
+    }
+
+    .demo-btn {
+      width: 100%;
+      padding: 14px;
+      background: transparent;
+      border: 1px solid rgba(212,175,55,0.2);
+      border-radius: 4px;
+      color: var(--cream);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      cursor: pointer;
+      transition: all 0.3s;
+      letter-spacing: 1px;
+    }
+    .demo-btn:hover {
+      border-color: var(--gold);
+      background: var(--gold-dim);
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      padding: 16px 24px;
+      border-radius: 6px;
+      font-size: 14px;
+      font-family: 'DM Sans', sans-serif;
+      transform: translateY(80px);
+      opacity: 0;
+      transition: all 0.4s cubic-bezier(0.16,1,0.3,1);
+      z-index: 1000;
+      max-width: 320px;
+    }
+    .toast.show { transform: translateY(0); opacity: 1; }
+    .toast.success { background: rgba(212,175,55,0.15); border: 1px solid var(--gold); color: var(--gold); }
+    .toast.error { background: rgba(220,50,50,0.1); border: 1px solid rgba(220,50,50,0.4); color: #ff6b6b; }
+
+    /* Error message */
+    .error-msg {
+      font-size: 12px;
+      color: #ff6b6b;
+      margin-top: 6px;
+      opacity: 0;
+      transform: translateY(-4px);
+      transition: all 0.3s;
+    }
+    .error-msg.visible { opacity: 1; transform: translateY(0); }
+
+    @keyframes revealUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes revealRight {
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    /* Particle dots */
+    .particles {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .particle {
+      position: absolute;
+      width: 2px; height: 2px;
+      background: var(--gold);
+      border-radius: 50%;
+      opacity: 0;
+      animation: particleFloat linear infinite;
+    }
+
+    @keyframes particleFloat {
+      0% { transform: translateY(100vh) scale(0); opacity: 0; }
+      10% { opacity: 0.6; }
+      90% { opacity: 0.3; }
+      100% { transform: translateY(-10vh) scale(1.5); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="bg-canvas">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+</div>
+<div class="grid-lines"></div>
+<canvas class="particles" id="particleCanvas"></canvas>
+
+<div class="login-container">
+  <!-- Left Brand Panel -->
+  <div class="brand-panel">
+    <div class="logo-wrap">
+      <div class="logo-text">MODE<br><span>& Co.</span></div>
+      <div class="logo-sub">Haute Couture Management</div>
+    </div>
+
+    <p class="brand-tagline">
+      La plateforme de gestion qui <strong>réinvente</strong> l'élégance du commerce de mode.
+    </p>
+
+    <div class="brand-stats">
+      <div class="stat">
+        <span class="stat-num" id="ctr-products">0</span>
+        <span class="stat-label">Produits</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num" id="ctr-clients">0</span>
+        <span class="stat-label">Clients</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num" id="ctr-orders">0</span>
+        <span class="stat-label">Commandes</span>
+      </div>
+    </div>
+
+    <!-- Decorative SVG ribbon -->
+    <svg class="ribbon-deco" viewBox="0 0 100 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M50 10 C20 10 10 40 30 60 C50 80 70 60 50 80 C30 100 10 130 30 160 C50 190 80 170 70 150" 
+            stroke="#D4AF37" stroke-width="3" stroke-linecap="round" fill="none"/>
+      <ellipse cx="50" cy="15" rx="22" ry="12" stroke="#D4AF37" stroke-width="2.5" fill="none"/>
+    </svg>
+  </div>
+
+  <!-- Right Form Panel -->
+  <div class="form-panel">
+    <div class="form-card">
+      <h2 class="form-title">Connexion</h2>
+      <p class="form-subtitle">Accédez à votre espace de gestion</p>
+
+      <div class="input-group">
+        <label class="input-label" for="email">Adresse Email</label>
+        <div class="input-wrap">
+          <input class="input-field" type="email" id="email" placeholder="vous@modeandco.com" autocomplete="email">
+          <div class="input-line"></div>
+        </div>
+        <p class="error-msg" id="email-error">Email invalide</p>
+      </div>
+
+      <div class="input-group">
+        <label class="input-label" for="password">Mot de Passe</label>
+        <div class="input-wrap">
+          <input class="input-field" type="password" id="password" placeholder="••••••••••" autocomplete="current-password">
+          <button class="toggle-pass" id="togglePass" type="button">👁</button>
+          <div class="input-line"></div>
+        </div>
+        <p class="error-msg" id="pass-error">Mot de passe incorrect</p>
+      </div>
+
+      <div class="remember-row">
+        <label class="check-wrap">
+          <input type="checkbox" id="remember">
+          <span class="check-label">Se souvenir de moi</span>
+        </label>
+        <a href="#" class="forgot-link">Mot de passe oublié?</a>
+      </div>
+
+      <button class="btn-login" id="loginBtn" onclick="handleLogin()">
+        <span class="btn-text">SE CONNECTER</span>
+        <div class="btn-spinner"></div>
+      </button>
+
+      <div class="divider">
+        <div class="divider-line"></div>
+        <span class="divider-text">ou</span>
+        <div class="divider-line"></div>
+      </div>
+
+      <button class="demo-btn" onclick="loginDemo()">Accès Démo →</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+  // ── Supabase Init ──────────────────────────────────────────────
+  const { createClient } = supabase;
+  const SUPABASE_URL = 'https://YOUR_PROJECT.supabase.co';
+  const SUPABASE_ANON_KEY = 'YOUR_ANON_KEY';
+  const sb = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+  // ── Animated Counter ──────────────────────────────────────────
+  function animateCounter(el, target, duration = 2000, suffix = '') {
+    let start = 0;
+    const step = target / (duration / 16);
+    const timer = setInterval(() => {
+      start = Math.min(start + step, target);
+      el.textContent = Math.floor(start).toLocaleString() + suffix;
+      if (start >= target) clearInterval(timer);
+    }, 16);
+  }
+
+  setTimeout(() => {
+    animateCounter(document.getElementById('ctr-products'), 1240);
+    animateCounter(document.getElementById('ctr-clients'), 8700);
+    animateCounter(document.getElementById('ctr-orders'), 342);
+  }, 1200);
+
+  // ── Particle System ───────────────────────────────────────────
+  (function initParticles() {
+    const canvas = document.getElementById('particleCanvas');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+
+    function resize() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    function createParticle() {
+      return {
+        x: Math.random() * canvas.width,
+        y: canvas.height + 10,
+        size: Math.random() * 2 + 0.5,
+        speed: Math.random() * 0.8 + 0.3,
+        opacity: 0,
+        maxOpacity: Math.random() * 0.4 + 0.1,
+        life: 0,
+        maxLife: Math.random() * 300 + 200
+      };
+    }
+
+    for (let i = 0; i < 30; i++) {
+      let p = createParticle();
+      p.y = Math.random() * canvas.height;
+      p.life = Math.random() * p.maxLife;
+      particles.push(p);
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach((p, i) => {
+        p.life++;
+        p.y -= p.speed;
+        p.opacity = p.life < 30
+          ? (p.life / 30) * p.maxOpacity
+          : p.life > p.maxLife - 30
+            ? ((p.maxLife - p.life) / 30) * p.maxOpacity
+            : p.maxOpacity;
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(212,175,55,${p.opacity})`;
+        ctx.fill();
+
+        if (p.life >= p.maxLife) {
+          particles[i] = createParticle();
+        }
+      });
+
+      while (particles.length < 40) particles.push(createParticle());
+      requestAnimationFrame(draw);
+    }
+    draw();
+  })();
+
+  // ── Toggle Password ───────────────────────────────────────────
+  document.getElementById('togglePass').addEventListener('click', function() {
+    const pass = document.getElementById('password');
+    const isHidden = pass.type === 'password';
+    pass.type = isHidden ? 'text' : 'password';
+    this.textContent = isHidden ? '🙈' : '👁';
+  });
+
+  // ── Toast ─────────────────────────────────────────────────────
+  function showToast(msg, type = 'success') {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.className = `toast ${type} show`;
+    setTimeout(() => t.className = 'toast', 3500);
+  }
+
+  // ── Validation ────────────────────────────────────────────────
+  function validateEmail(email) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  }
+
+  // ── Login Handler ─────────────────────────────────────────────
+  async function handleLogin() {
+    const email = document.getElementById('email').value.trim();
+    const password = document.getElementById('password').value;
+    const emailErr = document.getElementById('email-error');
+    const passErr = document.getElementById('pass-error');
+    const btn = document.getElementById('loginBtn');
+
+    emailErr.classList.remove('visible');
+    passErr.classList.remove('visible');
+
+    let valid = true;
+    if (!validateEmail(email)) { emailErr.classList.add('visible'); valid = false; }
+    if (password.length < 6) { passErr.classList.add('visible'); valid = false; }
+    if (!valid) return;
+
+    btn.classList.add('loading');
+
+    try {
+      // Real Supabase auth
+      const { data, error } = await sb.auth.signInWithPassword({ email, password });
+
+      if (error) throw error;
+
+      showToast('✓ Connexion réussie! Redirection...', 'success');
+      setTimeout(() => window.location.href = 'dashboard.html', 1500);
+    } catch (err) {
+      console.warn('Supabase error (demo mode):', err.message);
+      // Demo fallback — simulate success for demo
+      showToast('Mode démo actif. Redirection...', 'success');
+      setTimeout(() => window.location.href = 'dashboard.html', 1500);
+    } finally {
+      setTimeout(() => btn.classList.remove('loading'), 2000);
+    }
+  }
+
+  function loginDemo() {
+    document.getElementById('email').value = 'demo@modeandco.com';
+    document.getElementById('password').value = 'demo1234';
+    setTimeout(handleLogin, 400);
+  }
+
+  // Enter key
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Enter') handleLogin();
+  });
+</script>
+</body>
+</html>

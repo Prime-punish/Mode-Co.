@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mode & Co. – Vêtements, Chaussures & Accessoires de Luxe</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Montserrat:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;1,300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<header class="navbar navbar-expand-lg sticky-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">MODE <span>& Co.</span></a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link active" href="index.html">Accueil</a></li>
+        <li class="nav-item"><a class="nav-link" href="products.html">Vêtements</a></li>
+        <li class="nav-item"><a class="nav-link" href="products.html?cat=chaussures">Chaussures</a></li>
+        <li class="nav-item"><a class="nav-link" href="products.html?cat=accessoires">Accessoires</a></li>
+        <li class="nav-item"><a class="nav-link" href="apropos.html">À propos</a></li>
+      </ul>
+    </div>
+    <div class="d-flex align-items-center gap-2">
+      <a href="#" class="cart-icon-wrapper text-dark"><i class="bi bi-search fs-5"></i></a>
+      <a href="#" class="cart-icon-wrapper text-dark"><i class="bi bi-person fs-5"></i></a>
+      <a href="card.html" class="cart-icon-wrapper text-dark position-relative">
+        <i class="bi bi-bag fs-5"></i>
+        <span class="cart-badge badge rounded-pill bg-warning text-dark" style="transition:transform 0.2s;">0</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero-section">
+  <div class="hero-bg" style="background-image:url('https://images.unsplash.com/photo-1445205170230-053b83016050?w=1800&q=80');"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-7">
+        <p class="hero-eyebrow">Collection Printemps 2026</p>
+        <h1 class="hero-title">L'Élégance<br>n'est pas un<br>hasard, c'est un <span class="italic">art.</span></h1>
+        <p class="hero-desc">Découvrez notre collection exclusive — pièces soigneusement sélectionnées pour celles et ceux qui savent que le style est une signature.</p>
+        <div class="hero-cta">
+          <a href="products.html" class="btn btn-gold px-5 py-3">Explorer la Collection</a>
+          <a href="#categories" class="btn btn-outline-luxury px-5 py-3">Nos Catégories</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll-hint">
+    <span>Défiler</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- STATS BAND -->
+<section style="background:var(--primary-color);padding:28px 0;">
+  <div class="container">
+    <div class="row text-center g-4">
+      <div class="col-6 col-md-3" data-reveal>
+        <div style="font-family:var(--font-heading);font-size:2rem;font-weight:900;color:var(--accent-color);">
+          <span data-count="4200" data-suffix="+">0+</span>
+        </div>
+        <div style="font-size:0.7rem;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-top:4px;">Clients Satisfaits</div>
+      </div>
+      <div class="col-6 col-md-3" data-reveal data-delay="100">
+        <div style="font-family:var(--font-heading);font-size:2rem;font-weight:900;color:var(--accent-color);">
+          <span data-count="850" data-suffix="+">0+</span>
+        </div>
+        <div style="font-size:0.7rem;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-top:4px;">Produits Disponibles</div>
+      </div>
+      <div class="col-6 col-md-3" data-reveal data-delay="200">
+        <div style="font-family:var(--font-heading);font-size:2rem;font-weight:900;color:var(--accent-color);">
+          <span data-count="32" data-suffix=" Pays">0</span>
+        </div>
+        <div style="font-size:0.7rem;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-top:4px;">Livraison Mondiale</div>
+      </div>
+      <div class="col-6 col-md-3" data-reveal data-delay="300">
+        <div style="font-family:var(--font-heading);font-size:2rem;font-weight:900;color:var(--accent-color);">
+          <span data-count="7" data-suffix=" ans">0</span>
+        </div>
+        <div style="font-size:0.7rem;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-top:4px;">D'Excellence</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CATEGORIES -->
+<section class="section-padding" id="categories">
+  <div class="container">
+    <div class="section-header" data-reveal>
+      <span class="section-eyebrow">Notre Univers</span>
+      <h2 class="section-title">Explorez nos <span class="italic">Catégories</span></h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="row g-4">
+      <div class="col-lg-5" data-reveal="left">
+        <a href="products.html?cat=vetements" class="category-card d-block" style="aspect-ratio:2/3;">
+          <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=800&q=80" alt="Vêtements" class="cat-bg" style="width:100%;height:100%;">
+          <div class="cat-overlay"></div>
+          <div class="cat-content">
+            <p class="cat-label">Collection 2026</p>
+            <h3 class="cat-title">Vêtements</h3>
+            <p class="cat-count">+ de 320 articles</p>
+          </div>
+          <div class="cat-arrow"><i class="bi bi-arrow-up-right"></i></div>
+        </a>
+      </div>
+      <div class="col-lg-7">
+        <div class="row g-4 h-100">
+          <div class="col-12" data-reveal data-delay="100">
+            <a href="products.html?cat=chaussures" class="category-card d-block" style="aspect-ratio:16/9;">
+              <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=900&q=80" alt="Chaussures" class="cat-bg" style="width:100%;height:100%;">
+              <div class="cat-overlay"></div>
+              <div class="cat-content">
+                <p class="cat-label">Tendances</p>
+                <h3 class="cat-title">Chaussures</h3>
+                <p class="cat-count">+ de 180 paires</p>
+              </div>
+              <div class="cat-arrow"><i class="bi bi-arrow-up-right"></i></div>
+            </a>
+          </div>
+          <div class="col-12" data-reveal data-delay="200">
+            <a href="products.html?cat=accessoires" class="category-card d-block" style="aspect-ratio:16/9;">
+              <img src="https://images.unsplash.com/photo-1523779917675-b6ed3a42a561?w=900&q=80" alt="Accessoires" class="cat-bg" style="width:100%;height:100%;">
+              <div class="cat-overlay"></div>
+              <div class="cat-content">
+                <p class="cat-label">Raffinement</p>
+                <h3 class="cat-title">Accessoires</h3>
+                <p class="cat-count">+ de 350 pièces</p>
+              </div>
+              <div class="cat-arrow"><i class="bi bi-arrow-up-right"></i></div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED PRODUCTS -->
+<section class="section-padding" style="background:var(--bg-light);">
+  <div class="container">
+    <div class="d-flex justify-content-between align-items-end mb-5 flex-wrap gap-3" data-reveal>
+      <div>
+        <span class="section-eyebrow d-block">Sélection du moment</span>
+        <h2 class="section-title mb-0">Produits en <span class="italic">Vedette</span></h2>
+      </div>
+      <a href="products.html" class="btn btn-outline-dark px-4">Tout voir →</a>
+    </div>
+
+    <div class="row g-4">
+      <!-- Produit 1 -->
+      <div class="col-lg-3 col-md-6" data-reveal data-delay="0">
+        <div class="product-card" data-product>
+          <div class="product-card-img">
+            <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=600&q=80" alt="Robe d'été">
+            <span class="product-badge badge-new">Nouveau</span>
+            <button class="product-wishlist" data-id="p001"><i class="bi bi-heart"></i></button>
+            <div class="product-quick-actions">
+              <a href="product-detail.html" class="btn btn-outline-dark btn-sm">Voir</a>
+              <button class="btn btn-warning btn-sm add-to-cart" data-id="1001">+ Panier</button>
+            </div>
+          </div>
+          <div class="product-card-body">
+            <p class="product-category">Vêtements · Femme</p>
+            <h6 class="product-name">Robe d'été florale</h6>
+            <p class="product-desc">Coton biologique, coupe évasée</p>
+            <div class="product-price-row">
+              <div>
+                <span class="product-price">€49,99</span>
+              </div>
+              <span class="product-stars">★★★★★</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Produit 2 -->
+      <div class="col-lg-3 col-md-6" data-reveal data-delay="100">
+        <div class="product-card" data-product>
+          <div class="product-card-img">
+            <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600&q=80" alt="Sneakers">
+            <span class="product-badge badge-gold">Best Seller</span>
+            <button class="product-wishlist" data-id="p002"><i class="bi bi-heart"></i></button>
+            <div class="product-quick-actions">
+              <a href="product-detail.html" class="btn btn-outline-dark btn-sm">Voir</a>
+              <button class="btn btn-warning btn-sm add-to-cart" data-id="1002">+ Panier</button>
+            </div>
+          </div>
+          <div class="product-card-body">
+            <p class="product-category">Chaussures · Unisexe</p>
+            <h6 class="product-name">Sneakers urbaines premium</h6>
+            <p class="product-desc">Confort absolu, style affirmé</p>
+            <div class="product-price-row">
+              <div>
+                <span class="product-price">€89,99</span>
+              </div>
+              <span class="product-stars">★★★★☆</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Produit 3 -->
+      <div class="col-lg-3 col-md-6" data-reveal data-delay="200">
+        <div class="product-card" data-product>
+          <div class="product-card-img">
+            <img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=600&q=80" alt="Sac cuir">
+            <span class="product-badge badge-sale">-20%</span>
+            <button class="product-wishlist" data-id="p003"><i class="bi bi-heart"></i></button>
+            <div class="product-quick-actions">
+              <a href="product-detail.html" class="btn btn-outline-dark btn-sm">Voir</a>
+              <button class="btn btn-warning btn-sm add-to-cart" data-id="1003">+ Panier</button>
+            </div>
+          </div>
+          <div class="product-card-body">
+            <p class="product-category">Accessoires · Luxe</p>
+            <h6 class="product-name">Sac à main cuir véritable</h6>
+            <p class="product-desc">Cuir pleine fleur, artisanal</p>
+            <div class="product-price-row">
+              <div>
+                <span class="product-price">€103,99</span>
+                <span class="product-price-old">€129,99</span>
+              </div>
+              <span class="product-stars">★★★★★</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Produit 4 -->
+      <div class="col-lg-3 col-md-6" data-reveal data-delay="300">
+        <div class="product-card" data-product>
+          <div class="product-card-img">
+            <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600&q=80" alt="Montre">
+            <button class="product-wishlist" data-id="p004"><i class="bi bi-heart"></i></button>
+            <div class="product-quick-actions">
+              <a href="product-detail.html" class="btn btn-outline-dark btn-sm">Voir</a>
+              <button class="btn btn-warning btn-sm add-to-cart" data-id="1004">+ Panier</button>
+            </div>
+          </div>
+          <div class="product-card-body">
+            <p class="product-category">Accessoires · Premium</p>
+            <h6 class="product-name">Montre classique dorée</h6>
+            <p class="product-desc">Boîtier acier, bracelet cuir</p>
+            <div class="product-price-row">
+              <div>
+                <span class="product-price">€79,99</span>
+              </div>
+              <span class="product-stars">★★★★☆</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURE STRIP -->
+<section style="padding:60px 0;" data-reveal>
+  <div class="container">
+    <div class="row g-4 text-center">
+      <div class="col-md-3">
+        <div style="width:56px;height:56px;border-radius:50%;background:var(--accent-ghost);border:1px solid var(--border-gold);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:1.4rem;color:var(--accent-color);">
+          <i class="bi bi-truck"></i>
+        </div>
+        <h6 style="font-family:var(--font-heading);">Livraison Gratuite</h6>
+        <p style="font-size:0.8rem;color:var(--text-muted);margin:6px 0 0;">Dès 80€ d'achat</p>
+      </div>
+      <div class="col-md-3">
+        <div style="width:56px;height:56px;border-radius:50%;background:var(--accent-ghost);border:1px solid var(--border-gold);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:1.4rem;color:var(--accent-color);">
+          <i class="bi bi-arrow-return-left"></i>
+        </div>
+        <h6 style="font-family:var(--font-heading);">Retours Faciles</h6>
+        <p style="font-size:0.8rem;color:var(--text-muted);margin:6px 0 0;">30 jours pour changer d'avis</p>
+      </div>
+      <div class="col-md-3">
+        <div style="width:56px;height:56px;border-radius:50%;background:var(--accent-ghost);border:1px solid var(--border-gold);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:1.4rem;color:var(--accent-color);">
+          <i class="bi bi-shield-check"></i>
+        </div>
+        <h6 style="font-family:var(--font-heading);">Paiement Sécurisé</h6>
+        <p style="font-size:0.8rem;color:var(--text-muted);margin:6px 0 0;">SSL 256-bit chiffré</p>
+      </div>
+      <div class="col-md-3">
+        <div style="width:56px;height:56px;border-radius:50%;background:var(--accent-ghost);border:1px solid var(--border-gold);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:1.4rem;color:var(--accent-color);">
+          <i class="bi bi-headset"></i>
+        </div>
+        <h6 style="font-family:var(--font-heading);">Support 7j/7</h6>
+        <p style="font-size:0.8rem;color:var(--text-muted);margin:6px 0 0;">Chat, email, téléphone</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="newsletter-section" data-reveal>
+  <div class="container text-center">
+    <span style="font-size:0.65rem;letter-spacing:4px;text-transform:uppercase;color:var(--accent-color);font-weight:600;">Newsletter exclusive</span>
+    <h2 style="font-family:var(--font-heading);font-size:clamp(2rem,4vw,2.8rem);color:#fff;margin:16px 0 12px;">Restez en avance sur la <em style="color:var(--accent-color);font-style:italic;">tendance</em></h2>
+    <p style="color:rgba(255,255,255,0.5);font-size:0.9rem;margin-bottom:40px;">Offres exclusives, nouveautés en avant-première, conseils style personnalisés.</p>
+    <form class="newsletter-form">
+      <div class="newsletter-input-group">
+        <input type="email" class="newsletter-input" placeholder="Votre adresse email" required>
+        <button type="submit" class="newsletter-submit">S'inscrire</button>
+      </div>
+    </form>
+    <p style="font-size:0.72rem;color:rgba(255,255,255,0.25);margin-top:16px;">Pas de spam, désinscription en 1 clic. Confidentialité garantie.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="row g-5">
+      <div class="col-lg-4">
+        <div class="footer-brand">MODE <span>& Co.</span></div>
+        <p class="footer-desc">Votre destination mode pour des vêtements, chaussures et accessoires soigneusement sélectionnés pour un style qui vous ressemble.</p>
+        <div class="social-links mt-4">
+          <a href="#" class="social-link"><i class="bi bi-instagram"></i></a>
+          <a href="#" class="social-link"><i class="bi bi-facebook"></i></a>
+          <a href="#" class="social-link"><i class="bi bi-tiktok"></i></a>
+          <a href="#" class="social-link"><i class="bi bi-pinterest"></i></a>
+        </div>
+      </div>
+      <div class="col-6 col-lg-2">
+        <p class="footer-heading">Collections</p>
+        <ul class="footer-links">
+          <li><a href="#">Femme</a></li>
+          <li><a href="#">Homme</a></li>
+          <li><a href="#">Enfant</a></li>
+          <li><a href="#">Accessoires</a></li>
+          <li><a href="#">Nouveautés</a></li>
+        </ul>
+      </div>
+      <div class="col-6 col-lg-2">
+        <p class="footer-heading">Service</p>
+        <ul class="footer-links">
+          <li><a href="#">Mon Compte</a></li>
+          <li><a href="#">Mes Commandes</a></li>
+          <li><a href="#">Livraison</a></li>
+          <li><a href="#">Retours</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+      <div class="col-6 col-lg-2">
+        <p class="footer-heading">Informations</p>
+        <ul class="footer-links">
+          <li><a href="#">À propos</a></li>
+          <li><a href="#">CGV</a></li>
+          <li><a href="#">Confidentialité</a></li>
+          <li><a href="#">Cookies</a></li>
+        </ul>
+      </div>
+      <div class="col-6 col-lg-2">
+        <p class="footer-heading">Contact</p>
+        <ul class="footer-links">
+          <li><a href="mailto:contact@modeco.fr">contact@modeco.fr</a></li>
+          <li><a href="tel:+33123456789">+33 1 23 45 67 89</a></li>
+          <li><a href="#">Lun–Ven 9h–18h</a></li>
+        </ul>
+      </div>
+    </div>
+    <hr class="footer-divider">
+    <div class="footer-bottom">
+      <span>© 2026 Mode & Co. Tous droits réservés.</span>
+      <span>Fait avec ❤️ à Paris</span>
+      <div style="display:flex;gap:12px;align-items:center;">
+        <img src="https://cdn.jsdelivr.net/npm/payment-icons@1.1.0/min/flat/visa.svg" alt="Visa" style="height:22px;opacity:0.5;">
+        <img src="https://cdn.jsdelivr.net/npm/payment-icons@1.1.0/min/flat/mastercard.svg" alt="Mastercard" style="height:22px;opacity:0.5;">
+        <img src="https://cdn.jsdelivr.net/npm/payment-icons@1.1.0/min/flat/paypal.svg" alt="Paypal" style="height:22px;opacity:0.5;">
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>
+
+

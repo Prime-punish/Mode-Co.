@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mes Commandes – Mode & Co.</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Montserrat:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;1,300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    .page-hero{background:#000;padding:80px 0 50px;position:relative;}
+    .page-hero::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,0,0,0.9),rgba(212,175,55,0.1));}
+    .page-hero .container{position:relative;z-index:2;}
+    .order-card{background:#fff;border:1px solid var(--border-light);border-radius:var(--radius-lg);margin-bottom:20px;overflow:hidden;transition:all 0.3s;}
+    .order-card:hover{border-color:var(--border-gold);box-shadow:var(--shadow-gold);}
+    .order-header{padding:20px 24px;border-bottom:1px solid var(--border-light);background:var(--bg-light);}
+    .order-body{padding:24px;}
+    .order-product{display:flex;gap:16px;align-items:center;padding:12px 0;border-bottom:1px solid var(--border-light);}
+    .order-product:last-child{border-bottom:none;}
+    .order-product-img{width:64px;height:64px;object-fit:cover;border-radius:var(--radius-sm);}
+    .badge-status{padding:5px 14px;border-radius:20px;font-size:0.7rem;font-weight:600;letter-spacing:1px;}
+    .badge-delivered{background:rgba(34,197,94,0.1);color:#15803d;border:1px solid rgba(34,197,94,0.25);}
+    .badge-shipping{background:rgba(59,130,246,0.1);color:#1d4ed8;border:1px solid rgba(59,130,246,0.25);}
+    .badge-processing{background:rgba(245,158,11,0.1);color:#b45309;border:1px solid rgba(245,158,11,0.25);}
+    .tracking-steps{display:flex;justify-content:space-between;position:relative;padding:0 0 24px;}
+    .tracking-steps::before{content:'';position:absolute;top:16px;left:0;right:0;height:2px;background:var(--border-light);}
+    .tracking-step{text-align:center;position:relative;flex:1;}
+    .tracking-dot{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 8px;font-size:0.85rem;position:relative;z-index:1;}
+    .tracking-dot.done{background:linear-gradient(135deg,var(--accent-color),var(--accent-dark));color:#000;}
+    .tracking-dot.current{background:#fff;border:2px solid var(--accent-color);color:var(--accent-color);}
+    .tracking-dot.pending{background:#fff;border:2px solid var(--border-light);color:var(--text-muted);}
+    .tracking-label{font-size:0.65rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-secondary);}
+    .filter-btn{padding:8px 20px;border-radius:20px;font-size:0.75rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;border:1.5px solid var(--border-light);background:#fff;cursor:pointer;transition:all 0.2s;}
+    .filter-btn.active{background:#000;color:#fff;border-color:#000;}
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<header class="navbar navbar-expand-lg sticky-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">MODE <span>& Co.</span></a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link" href="index.html">Accueil</a></li>
+        <li class="nav-item"><a class="nav-link" href="products.html">Vêtements</a></li>
+        <li class="nav-item"><a class="nav-link" href="products.html?cat=chaussures">Chaussures</a></li>
+        <li class="nav-item"><a class="nav-link" href="products.html?cat=accessoires">Accessoires</a></li>
+        <li class="nav-item"><a class="nav-link" href="a-propos.html">À propos</a></li>
+      </ul>
+    </div>
+    <div class="d-flex align-items-center gap-2">
+      <a href="products.html" class="cart-icon-wrapper text-dark"><i class="bi bi-search fs-5"></i></a>
+      <a href="compte.html" class="cart-icon-wrapper text-dark"><i class="bi bi-person fs-5"></i></a>
+      <a href="card.html" class="cart-icon-wrapper text-dark position-relative">
+        <i class="bi bi-bag fs-5"></i>
+        <span class="cart-badge badge rounded-pill bg-warning text-dark">0</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<div class="page-hero">
+  <div class="container">
+    <nav style="font-size:0.75rem;margin-bottom:16px;">
+      <a href="index.html" style="color:rgba(255,255,255,0.5);">Accueil</a>
+      <span style="color:rgba(255,255,255,0.3);" class="mx-2">/</span>
+      <a href="compte.html" style="color:rgba(255,255,255,0.5);">Mon Compte</a>
+      <span style="color:rgba(255,255,255,0.3);" class="mx-2">/</span>
+      <span style="color:var(--accent-color);">Mes Commandes</span>
+    </nav>
+    <h1 style="font-family:var(--font-heading);font-size:clamp(2rem,4vw,3.5rem);font-weight:900;color:#fff;">Mes <span style="color:var(--accent-color);font-style:italic;">Commandes</span></h1>
+    <p style="color:rgba(255,255,255,0.6);margin-top:8px;">12 commandes au total</p>
+  </div>
+</div>
+
+<section class="section-padding" style="background:var(--bg-light);">
+  <div class="container">
+    <!-- Filters -->
+    <div class="d-flex gap-2 flex-wrap mb-4">
+      <button class="filter-btn active">Toutes (12)</button>
+      <button class="filter-btn">En cours (3)</button>
+      <button class="filter-btn">Livrées (8)</button>
+      <button class="filter-btn">Retournées (1)</button>
+    </div>
+
+    <!-- Order 1 -->
+    <div class="order-card">
+      <div class="order-header">
+        <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+          <div>
+            <span style="font-weight:700;font-size:0.95rem;">#MC-2026-0042</span>
+            <span style="color:var(--text-secondary);font-size:0.8rem;margin-left:16px;">Commandé le 15 avril 2026</span>
+          </div>
+          <div class="d-flex align-items-center gap-3">
+            <span style="font-weight:700;">189,00€</span>
+            <span class="badge-status badge-shipping">En livraison</span>
+          </div>
+        </div>
+      </div>
+      <div class="order-body">
+        <!-- Tracking -->
+        <div class="tracking-steps mb-4">
+          <div class="tracking-step">
+            <div class="tracking-dot done"><i class="bi bi-check"></i></div>
+            <div class="tracking-label">Confirmée</div>
+          </div>
+          <div class="tracking-step">
+            <div class="tracking-dot done"><i class="bi bi-check"></i></div>
+            <div class="tracking-label">Préparée</div>
+          </div>
+          <div class="tracking-step">
+            <div class="tracking-dot current"><i class="bi bi-truck"></i></div>
+            <div class="tracking-label">Expédiée</div>
+          </div>
+          <div class="tracking-step">
+            <div class="tracking-dot pending"><i class="bi bi-house"></i></div>
+            <div class="tracking-label">Livrée</div>
+          </div>
+        </div>
+        <!-- Products -->
+        <div class="order-product">
+          <img src="https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?w=200&q=80" class="order-product-img" alt="">
+          <div class="flex-grow-1">
+            <div style="font-weight:600;font-size:0.9rem;">Blazer Structuré Noir</div>
+            <div style="font-size:0.8rem;color:var(--text-secondary);">Taille M · Noir</div>
+          </div>
+          <div style="font-weight:700;">149,00€</div>
+        </div>
+        <div class="order-product">
+          <img src="https://images.unsplash.com/photo-1598554747436-c9293d6a588f?w=200&q=80" class="order-product-img" alt="">
+          <div class="flex-grow-1">
+            <div style="font-weight:600;font-size:0.9rem;">Ceinture Cuir Dorée</div>
+            <div style="font-size:0.8rem;color:var(--text-secondary);">Taille 80 · Caramel</div>
+          </div>
+          <div style="font-weight:700;">40,00€</div>
+        </div>
+        <div class="d-flex gap-2 mt-3 flex-wrap">
+          <button class="btn btn-outline-dark btn-sm px-4">Suivre le colis</button>
+          <a href="retours.html" class="btn btn-sm px-4" style="border:1.5px solid var(--border-light);color:var(--text-secondary);">Retourner un article</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Order 2 -->
+    <div class="order-card">
+      <div class="order-header">
+        <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+          <div>
+            <span style="font-weight:700;font-size:0.95rem;">#MC-2026-0038</span>
+            <span style="color:var(--text-secondary);font-size:0.8rem;margin-left:16px;">Commandé le 2 avril 2026</span>
+          </div>
+          <div class="d-flex align-items-center gap-3">
+            <span style="font-weight:700;">79,00€</span>
+            <span class="badge-status badge-delivered">Livré</span>
+          </div>
+        </div>
+      </div>
+      <div class="order-body">
+        <div class="order-product">
+          <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=200&q=80" class="order-product-img" alt="">
+          <div class="flex-grow-1">
+            <div style="font-weight:600;font-size:0.9rem;">Sneakers Runner Blanc</div>
+            <div style="font-size:0.8rem;color:var(--text-secondary);">Taille 42 · Blanc</div>
+          </div>
+          <div style="font-weight:700;">79,00€</div>
+        </div>
+        <div class="d-flex gap-2 mt-3 flex-wrap">
+          <button class="btn btn-gold btn-sm px-4">Commander à nouveau</button>
+          <a href="retours.html" class="btn btn-sm px-4" style="border:1.5px solid var(--border-light);color:var(--text-secondary);">Retourner</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Order 3 -->
+    <div class="order-card">
+      <div class="order-header">
+        <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+          <div>
+            <span style="font-weight:700;font-size:0.95rem;">#MC-2026-0031</span>
+            <span style="color:var(--text-secondary);font-size:0.8rem;margin-left:16px;">Commandé le 18 mars 2026</span>
+          </div>
+          <div class="d-flex align-items-center gap-3">
+            <span style="font-weight:700;">245,00€</span>
+            <span class="badge-status badge-delivered">Livré</span>
+          </div>
+        </div>
+      </div>
+      <div class="order-body">
+        <div class="order-product">
+          <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=200&q=80" class="order-product-img" alt="">
+          <div class="flex-grow-1">
+            <div style="font-weight:600;font-size:0.9rem;">Robe Midi Élégante</div>
+            <div style="font-size:0.8rem;color:var(--text-secondary);">Taille S · Ivoire</div>
+          </div>
+          <div style="font-weight:700;">195,00€</div>
+        </div>
+        <div class="d-flex gap-2 mt-3 flex-wrap">
+          <button class="btn btn-gold btn-sm px-4">Commander à nouveau</button>
+          <a href="retours.html" class="btn btn-sm px-4" style="border:1.5px solid var(--border-light);color:var(--text-secondary);">Retourner</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="row g-5">
+      <div class="col-lg-4">
+        <div class="footer-brand">MODE <span>& Co.</span></div>
+        <p class="footer-desc">Votre destination mode pour des vêtements, chaussures et accessoires soigneusement sélectionnés.</p>
+      </div>
+      <div class="col-6 col-lg-2">
+        <p class="footer-heading">Service</p>
+        <ul class="footer-links">
+          <li><a href="compte.html">Mon Compte</a></li>
+          <li><a href="commandes.html">Mes Commandes</a></li>
+          <li><a href="livraison.html">Livraison</a></li>
+          <li><a href="retours.html">Retours</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="col-6 col-lg-2">
+        <p class="footer-heading">Informations</p>
+        <ul class="footer-links">
+          <li><a href="a-propos.html">À propos</a></li>
+          <li><a href="cgv.html">CGV</a></li>
+          <li><a href="confidentialite.html">Confidentialité</a></li>
+          <li><a href="cookies.html">Cookies</a></li>
+        </ul>
+      </div>
+    </div>
+    <hr class="footer-divider">
+    <div class="footer-bottom"><span>© 2026 Mode & Co. Tous droits réservés.</span></div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/main.js"></script>
+<script>
+document.querySelectorAll('.filter-btn').forEach(btn=>{
+  btn.addEventListener('click',function(){
+    document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+    this.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
